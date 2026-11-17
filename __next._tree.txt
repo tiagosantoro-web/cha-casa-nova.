@@ -1,0 +1,5 @@
+:HL["/cha-casa-nova./_next/static/chunks/0tx9hcbpo6528.css","style"]
+:HL["/cha-casa-nova./_next/static/media/0264c3c98799c37c-s.p.0fuf3937kiol3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/cha-casa-nova./_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+1:[["children",{"s":"__PAGE__","h":160}]]
+0:{"b":"3r85OryXwyVHYeJVxyEos","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
