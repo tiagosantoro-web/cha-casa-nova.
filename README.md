@@ -86,3 +86,11 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 3. Número de WhatsApp que receberá as confirmações.
 4. Endereço final do site (domínio ou link da Vercel/GitHub Pages).
 5. Foto do casal (opcional).
+
+## Publicação atual
+
+No ar em https://tiagosantoro-web.github.io/cha-casa-nova./ (GitHub Pages, ramo `gh-pages` do repositório `tiagosantoro-web/cha-casa-nova.`).
+
+Para atualizar depois de editar os dados: gere com `BASE_PATH=/cha-casa-nova. npm run build` (no Git Bash do Windows, prefixe com `MSYS_NO_PATHCONV=1`), copie o conteúdo de `out/` para o ramo `gh-pages` junto com um `.nojekyll` vazio e envie. O GitHub atualiza o site em cerca de 1 minuto.
+
+Se o repositório for renomeado (por exemplo, para tirar o ponto do fim), o `BASE_PATH` e o endereço mudam junto: gere de novo com o nome novo.
