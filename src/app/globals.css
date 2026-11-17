@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Paleta neutra: papel, pedra, grafite e detalhes em "inox". */
+@theme {
+  --color-paper: #f6f4f0;
+  --color-card: #ffffff;
+  --color-line: #e4e0d9;
+  --color-stone-soft: #ece8e1;
+  --color-muted: #6b675f;
+  --color-ink: #1b1a18;
+  --color-ink-soft: #34322e;
+  --color-steel: #a9adb1;
+  --color-steel-dark: #6e7378;
+  --color-whatsapp: #0e7a3e;
+  --color-ok: #2f6b4f;
+  --color-ok-soft: #e6f0ea;
+  --color-danger: #9b2c22;
+  --color-danger-soft: #f7e6e3;
+  --color-warn: #8a5a00;
+  --color-warn-soft: #fbf0d9;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --shadow-card: 0 1px 2px rgb(27 26 24 / 0.05), 0 8px 24px -12px rgb(27 26 24 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(27 26 24 / 0.06), 0 22px 40px -18px rgb(27 26 24 / 0.32);
+
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade: fade 0.4s ease-out both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+  dialog::backdrop {
+    background: rgb(27 26 24 / 0.55);
+    backdrop-filter: blur(3px);
+  }
+}
+
+@layer components {
+  /* Acabamento de inox escovado, usado como detalhe. */
+  .steel {
+    background: linear-gradient(115deg, #d9dcdf 0%, #f4f5f6 22%, #b9bdc1 48%, #eceef0 70%, #a9adb1 100%);
+  }
+  .grain {
+    background-image: radial-gradient(rgb(27 26 24 / 0.035) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
