@@ -19,6 +19,8 @@ export type Presente = {
   outroPreco: number | null;
   /** true = já escolhido por alguém (o casal marca depois de receber a confirmação). */
   escolhido: boolean;
-  /** Opcional: foto em /public (ex.: "/presentes/air-fryer.jpg"). */
+  /** Opcional: foto em /public (ex.: "/presentes/air-fryer.jpg"), sem o BASE_PATH. */
   imagem?: string;
+  /** true = a foto é do anúncio da "outra opção", não do link principal. */
+  imagemDaOutraOpcao?: boolean;
 };

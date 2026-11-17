@@ -27,6 +27,7 @@ export const presentes: Presente[] = [
     preco: 14790, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Panelas-Antiaderente-Alum%C3%ADnio-Premium-Esp%C3%A1tula/dp/B0DWYT5CR4",
     outraLoja: "Amazon (Tramontina Mônaco)", outroLink: "https://www.amazon.com.br/Alum%C3%ADnio-Revestimento-Antiaderente-Tramontina-20899050/dp/B076JJMP9S", outroPreco: null,
+    imagem: "/presentes/jogo-de-panelas.jpg",
   },
   {
     id: "frigideira", categoria: "cozinha", escolhido: false,
@@ -51,6 +52,7 @@ export const presentes: Presente[] = [
     preco: 9230, consultadoEm: CONSULTA, loja: "Mercado Livre",
     link: "https://www.mercadolivre.com.br/liquidificador-britnia-21-litros-black-3-velocidades-preto/p/MLB22957732",
     outraLoja: "Amazon (Mondial Turbo L-900-FB, 110 V)", outroLink: "https://www.amazon.com.br/Liquidificador-Turbo-Mondial-L-900-FB/dp/B07CKCWNRC", outroPreco: 10352,
+    imagem: "/presentes/liquidificador.jpg", imagemDaOutraOpcao: true,
   },
   {
     id: "batedeira", categoria: "cozinha", escolhido: false,
@@ -59,6 +61,7 @@ export const presentes: Presente[] = [
     preco: 23420, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Batedeira-Planet%C3%A1ria-Velocidades-Mondial-BP-03-B/dp/B07WGHXCJX",
     outraLoja: "Amazon (Mondial BP-02P preto e inox)", outroLink: "https://www.amazon.com.br/Batedeira-Planet%C3%A1ria-Velocidades-Mondial-BP-02P-B-TI/dp/B084N3FT75", outroPreco: null,
+    imagem: "/presentes/batedeira.jpg",
   },
   {
     id: "sanduicheira", categoria: "cozinha", escolhido: false,
@@ -67,6 +70,7 @@ export const presentes: Presente[] = [
     preco: 6550, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Cadence-SANDUICHEIRA-MINIGRIL-SAN260-PRETA/dp/B09HW53ZVV",
     outraLoja: "Amazon (mesmo modelo, 220 V)", outroLink: "https://www.amazon.com.br/Sanduicheira-El%C3%A9trica-Toast-Grill-SAN260-220/dp/B09HW1W3YD", outroPreco: 6700,
+    imagem: "/presentes/sanduicheira.jpg",
   },
   {
     id: "cafeteira", categoria: "cozinha", escolhido: false,
@@ -75,6 +79,7 @@ export const presentes: Presente[] = [
     preco: 9900, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Cafeteira-El%C3%A9trica-X%C3%ADcaras-Elgin-Corta-pingos/dp/B0DB2J58X8",
     outraLoja: "Amazon (Electrolux ECM10 preto e inox)", outroLink: "https://www.amazon.com.br/Electrolux-ECM10-Cafeteira/dp/B09CC72K1X", outroPreco: 10500,
+    imagem: "/presentes/cafeteira.jpg",
   },
   {
     id: "chaleira-eletrica", categoria: "cozinha", escolhido: false,
@@ -83,6 +88,7 @@ export const presentes: Presente[] = [
     preco: null, consultadoEm: null, loja: "Amazon",
     link: "https://www.amazon.com.br/Chaleira-El%C3%A9trica-Inox-Litro-110v/dp/B0GYSBW68G",
     outraLoja: "Amazon (mesmo modelo, 220 V)", outroLink: "https://www.amazon.com.br/Chaleira-El%C3%A9trica-Inox-Litro-220v/dp/B0GYQ5FP6Q", outroPreco: 4290,
+    imagem: "/presentes/chaleira-eletrica.jpg",
   },
   {
     id: "jogo-de-pratos", categoria: "cozinha", escolhido: false,
@@ -91,6 +97,7 @@ export const presentes: Presente[] = [
     preco: 26650, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Kit-Pe%C3%A7as-Aparelho-Jantar-Cer%C3%A2mica/dp/B0GX5BC5GR",
     outraLoja: "Mercado Livre (Alleanza preto acetinado)", outroLink: "https://www.mercadolivre.com.br/aparelho-de-jantar-20-pecas-preto-acetinado-alleanza/p/MLB33295945", outroPreco: 39900,
+    imagem: "/presentes/jogo-de-pratos.jpg",
   },
   {
     id: "jogo-de-copos", categoria: "cozinha", escolhido: false,
@@ -99,6 +106,7 @@ export const presentes: Presente[] = [
     preco: 2890, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Copos-200ml-Refrigerante-Figueiredo-Transparente/dp/B0C8P6H15X",
     outraLoja: "Carrefour (Nadir Lights 410 ml)", outroLink: "https://mercado.carrefour.com.br/jogo-de-copos-long-drink-em-vidro-410ml-nadir-figueiredo-lights-6-pecas-259284/p", outroPreco: 3499,
+    imagem: "/presentes/jogo-de-copos.jpg",
   },
   {
     id: "canecas", categoria: "cozinha", escolhido: false,
@@ -107,6 +115,7 @@ export const presentes: Presente[] = [
     preco: 6640, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Canecas-Porcelana-Canelada-250ml-Preta/dp/B0H1DGTP45",
     outraLoja: "Amazon (Germer Urban Nero 360 ml)", outroLink: "https://www.amazon.com.br/Conjunto-Canecas-X%C3%ADcaras-Porcelana-Marmorizado/dp/B0C4BTV5LM", outroPreco: 17010,
+    imagem: "/presentes/canecas.jpg",
   },
   {
     id: "faqueiro", categoria: "cozinha", escolhido: false,
@@ -115,6 +124,7 @@ export const presentes: Presente[] = [
     preco: 6049, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Faqueiro-Inox-Malibu-Tramontina-Voltagev/dp/B07WR4V7CL",
     outraLoja: "Amazon (Tramontina Búzios)", outroLink: "https://www.amazon.com.br/Talheres-Faqueiro-Pe%C3%A7as-B%C3%BAzios-Tramontina/dp/B07WGQ64QR", outroPreco: 6990,
+    imagem: "/presentes/faqueiro.jpg",
   },
   {
     id: "escorredor", categoria: "cozinha", escolhido: false,
@@ -123,6 +133,7 @@ export const presentes: Presente[] = [
     preco: 3399, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Escorredor-Lou%C3%A7a-Inox-Premium-Antiferrugem/dp/B0FLWTZTZZ",
     outraLoja: "Amazon (2 andares, 16 pratos)", outroLink: "https://www.amazon.com.br/Escorredor-Talheres-Resistente-Durabilidade-Enferruja/dp/B0DW1Q6VFB", outroPreco: 10250,
+    imagem: "/presentes/escorredor.jpg",
   },
   {
     id: "potes", categoria: "cozinha", escolhido: false,
@@ -139,6 +150,7 @@ export const presentes: Presente[] = [
     preco: 5990, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Porta-Condimento-Girat%C3%B3rio-Preto-Potes/dp/B0B57FNTFC",
     outraLoja: "Amazon (Futuro Casa, 16 potes)", outroLink: "https://www.amazon.com.br/Porta-Temperos-Girat%C3%B3rio-Suporte-Potes/dp/B09LMRTVSB", outroPreco: null,
+    imagem: "/presentes/porta-temperos.jpg",
   },
   {
     id: "lixeira-cozinha", categoria: "cozinha", escolhido: false,
@@ -163,6 +175,7 @@ export const presentes: Presente[] = [
     preco: null, consultadoEm: null, loja: "Amazon",
     link: "https://www.amazon.com.br/Tabua-Corte-polietileno-Preta-Canaleta/dp/B097P1V4QK",
     outraLoja: "Mercado Livre (busca: polietileno preta)", outroLink: "https://lista.mercadolivre.com.br/tabua-de-corte-polietileno-preta", outroPreco: 3097,
+    imagem: "/presentes/tabua-de-corte.jpg",
   },
 
   // QUARTO -------------------------------------------------------------
@@ -173,6 +186,7 @@ export const presentes: Presente[] = [
     preco: null, consultadoEm: null, loja: "Amazon",
     link: "https://www.amazon.com.br/Pe%C3%A7as-Casal-Ponto-Palito-Cinza/dp/B0D463L1N4",
     outraLoja: "Magazine Luiza (busca: casal cinza)", outroLink: "https://www.magazineluiza.com.br/busca/jogo+de+cama+casal+cinza/", outroPreco: 6785,
+    imagem: "/presentes/jogo-de-cama.jpg",
   },
   {
     id: "travesseiros", categoria: "quarto", escolhido: false,
@@ -181,6 +195,7 @@ export const presentes: Presente[] = [
     preco: 4935, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Travesseiro-Lavavel-Anti%C3%A1caro-Fibra-Siliconada/dp/B0DTJCTNB7",
     outraLoja: "Amazon (antiácaro e antimofo)", outroLink: "https://www.amazon.com.br/Travesseiros-Antial%C3%A9rgico-Lav%C3%A1vel-50x70cm-Siliconada/dp/B0D7SZK44V", outroPreco: 5690,
+    imagem: "/presentes/travesseiros.jpg",
   },
   {
     id: "edredom", categoria: "quarto", escolhido: false,
@@ -197,6 +212,7 @@ export const presentes: Presente[] = [
     preco: 5704, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Cobertor-Manta-Microfibra-Casal-Andreza/dp/B0BM3QKVL1",
     outraLoja: "Mercado Livre (busca: casal cinza)", outroLink: "https://lista.mercadolivre.com.br/manta-microfibra-casal-cinza", outroPreco: 3299,
+    imagem: "/presentes/cobertor.jpg",
   },
   {
     id: "caixas-organizadoras", categoria: "quarto", escolhido: false,
@@ -213,6 +229,7 @@ export const presentes: Presente[] = [
     preco: 6990, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Cabides-Veludo-Antideslizante-Roupas-Preto/dp/B0BSHFFZH4",
     outraLoja: "Mercado Livre (preto e prata)", outroLink: "https://www.mercadolivre.com.br/kit-50-cabide-veludo-slim-antideslizante-ultra-fino-cor-pretoprata/p/MLB23069478", outroPreco: 7499,
+    imagem: "/presentes/cabides.jpg",
   },
 
   // BANHEIRO -----------------------------------------------------------
@@ -231,6 +248,7 @@ export const presentes: Presente[] = [
     preco: 3990, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Tapete-Banheiro-Preto-Antiderrapante-Pe%C3%A7as/dp/B09P8JYD2L",
     outraLoja: "Mercado Livre (busca: tapete preto)", outroLink: "https://lista.mercadolivre.com.br/tapete-banheiro-preto", outroPreco: 2299,
+    imagem: "/presentes/tapete-banheiro.jpg",
   },
   {
     id: "kit-acessorios-banheiro", categoria: "banheiro", escolhido: false,
@@ -239,14 +257,16 @@ export const presentes: Presente[] = [
     preco: 5572, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Acess%C3%B3rios-Banheiro-Preto-Fosco-Pe%C3%A7as/dp/B081FBTR46",
     outraLoja: "Mercado Livre (busca: preto fosco)", outroLink: "https://lista.mercadolivre.com.br/kit-acessorios-banheiro-preto-fosco", outroPreco: 4178,
+    imagem: "/presentes/kit-acessorios-banheiro.jpg",
   },
   {
     id: "porta-sabonete", categoria: "banheiro", escolhido: false,
     nome: "Porta-sabonete líquido", cor: "Preto",
-    descricao: "Ou, linha Bold.",
+    descricao: "Marca OU, linha Bold.",
     preco: 999, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Porta-sabonete-l%C3%ADquido-Preto-Linha/dp/B0C3BQJC33",
     outraLoja: "Amazon (UZ translúcido preto)", outroLink: "https://www.amazon.com.br/Porta-Sabonete-Liquido-Acr%C3%ADlico-Banheiro/dp/B0778MXWTK", outroPreco: 1747,
+    imagem: "/presentes/porta-sabonete.jpg",
   },
   {
     id: "lixeira-banheiro", categoria: "banheiro", escolhido: false,
@@ -269,10 +289,11 @@ export const presentes: Presente[] = [
   {
     id: "varal", categoria: "lavanderia", escolhido: false,
     nome: "Varal sanfonado de parede 1 metro", cor: "Alumínio (prata)",
-    descricao: "Mor, alumínio.",
+    descricao: "Marca Mor, em alumínio.",
     preco: 9000, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Varal-Sanfonado-Alum%C3%ADnio-00m-Mor/dp/B0772WWWWX",
     outraLoja: "Amazon (Mor de chão com abas)", outroLink: "https://www.amazon.com.br/Varal-Ch%C3%A3o-Abas-Alum%C3%ADnio-Metros-MOR-006032/dp/B076PNNFCS", outroPreco: 12900,
+    imagem: "/presentes/varal.jpg",
   },
   {
     id: "ferro-de-passar", categoria: "lavanderia", escolhido: false,
@@ -281,6 +302,7 @@ export const presentes: Presente[] = [
     preco: null, consultadoEm: null, loja: "Amazon",
     link: "https://www.amazon.com.br/Ferro-Met%C3%A1lico-Black-Decker-Preto/dp/B07613Y23B",
     outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/ferro-de-passar.jpg",
   },
   {
     id: "tabua-de-passar", categoria: "lavanderia", escolhido: false,
@@ -293,10 +315,11 @@ export const presentes: Presente[] = [
   {
     id: "cesto-de-roupas", categoria: "lavanderia", escolhido: false,
     nome: "Cesto de roupas com tampa 47 litros", cor: "Preto",
-    descricao: "Ou, plástico com tampa. Preço a confirmar no anúncio.",
+    descricao: "Marca OU, plástico com tampa. Preço a confirmar no anúncio.",
     preco: null, consultadoEm: null, loja: "Amazon",
     link: "https://www.amazon.com.br/Cesto-Roupas-Com-Tampa-Preta/dp/B078HCL5WL",
     outraLoja: "Mercado Livre (busca: com tampa)", outroLink: "https://lista.mercadolivre.com.br/cesto-para-roupa-suja-com-tampa", outroPreco: 4042,
+    imagem: "/presentes/cesto-de-roupas.jpg",
   },
   {
     id: "baldes", categoria: "lavanderia", escolhido: false,
@@ -305,6 +328,7 @@ export const presentes: Presente[] = [
     preco: 4199, consultadoEm: CONSULTA, loja: "Mercado Livre",
     link: "https://produto.mercadolivre.com.br/MLB-3208257996-kit-2-x-balde-plastico-reforcado-20-litros-com-alca-preto-_JM",
     outraLoja: "Amazon (2 baldes de polipropileno)", outroLink: "https://www.amazon.com.br/Balde-Refor%C3%A7ado-Litros-Al%C3%A7a-Preto/dp/B0BS4F6TWY", outroPreco: 6999,
+    imagem: "/presentes/baldes.jpg", imagemDaOutraOpcao: true,
   },
   {
     id: "kit-limpeza", categoria: "lavanderia", escolhido: false,
@@ -313,6 +337,7 @@ export const presentes: Presente[] = [
     preco: 4667, consultadoEm: CONSULTA, loja: "Mercado Livre",
     link: "https://www.mercadolivre.com.br/mop-giratorio-clean-tech-13l-com-balde-e-cabo-inox-360-cinza-esfregao-rodo-magico-para-limpar-piso-porcelanato-ceramica-laminado-madeira-banheiro-cozinha-casa-apartamento-lavanderia/p/MLB72058440",
     outraLoja: "Amazon (Flash Limp Fit 8 L)", outroLink: "https://www.amazon.com.br/Mop-Giratorio-Flash-Limp-Cinza/dp/B07NQ9PFKN", outroPreco: 6990,
+    imagem: "/presentes/kit-limpeza.jpg", imagemDaOutraOpcao: true,
   },
 
   // SALA E DECORAÇÃO ---------------------------------------------------
@@ -331,6 +356,7 @@ export const presentes: Presente[] = [
     preco: 4749, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Rel%C3%B3gio-Parede-Redondo-30-Funciona/dp/B0F8PDLY1V",
     outraLoja: "Amazon (fundo preto e alumínio escovado)", outroLink: "https://www.amazon.com.br/Silencioso-Alum%C3%ADnio-Decorativo-Minimalista-Escrit%C3%B3rio/dp/B0DTFP6H77", outroPreco: null,
+    imagem: "/presentes/relogio.jpg",
   },
   {
     id: "almofadas", categoria: "sala", escolhido: false,
@@ -355,6 +381,7 @@ export const presentes: Presente[] = [
     preco: null, consultadoEm: null, loja: "Amazon",
     link: "https://www.amazon.com.br/Quadros-Decorativos-Grandes-Branco-Manhattan/dp/B096CNJMJN",
     outraLoja: "Magazine Luiza (Decorelar, moldura preta)", outroLink: "https://www.magazineluiza.com.br/kit-3-quadros-decorativos-para-sala-flores-preto-e-branco-moderno-casa-corredor-conjunto-com-moldura-decorelar/p/fkb4gad75c/de/qdec/", outroPreco: 17000,
+    imagem: "/presentes/quadros.jpg",
   },
   {
     id: "cesto-organizador", categoria: "sala", escolhido: false,

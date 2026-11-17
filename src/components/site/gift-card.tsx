@@ -1,9 +1,29 @@
 "use client";
 
-import { CheckIcon, ExternalIcon, GiftIcon } from "@/components/icons";
+import { CheckIcon, ExternalIcon, HeartIcon } from "@/components/icons";
 import { formatPrice, formatShortDate } from "@/lib/format";
 import type { Presente } from "@/lib/types";
 import { GiftImage } from "./gift-image";
+
+const SWATCH: [RegExp, string][] = [
+  [/inox|prata|alumínio|cromado/i, "linear-gradient(135deg, #eceef0, #a9adb1)"],
+  [/cinza/i, "#9a9da1"],
+  [/branc/i, "#ffffff"],
+  [/vidro|transparente/i, "linear-gradient(135deg, #ffffff, #cfe3ee)"],
+  [/pret/i, "#1d1d1f"],
+];
+
+/** Bolinha de cor: metade de cada cor quando há duas (ex.: "Preto e inox"). */
+function swatch(cor: string): string {
+  const found = cor
+    .split(/\s+e\s+/i)
+    .map((part) => SWATCH.find(([pattern]) => pattern.test(part))?.[1])
+    .filter((value): value is string => Boolean(value));
+  if (!found.length) return "#1d1d1f";
+  if (found.length === 1) return found[0];
+  const solid = (value: string) => (value.startsWith("linear") ? "#b9bdc1" : value);
+  return `linear-gradient(90deg, ${solid(found[0])} 50%, ${solid(found[1])} 50%)`;
+}
 
 type Props = {
   gift: Presente;
@@ -20,19 +40,26 @@ export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
 
   return (
     <article
-      className={`group flex h-full flex-col overflow-hidden rounded-3xl border bg-card shadow-card transition duration-300 ${
-        reserved ? "border-line" : "border-transparent hover:-translate-y-1 hover:shadow-lift"
-      }`}
+      className={`group flex h-full flex-col overflow-hidden rounded-[1.75rem] border bg-card shadow-card transition duration-300 ${
+        reserved ? "border-line" : "border-line/60 hover:-translate-y-1 hover:shadow-lift"
+      } ${chosenByMe ? "ring-2 ring-accent" : ""}`}
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-stone-soft">
-        <div className={`size-full transition duration-500 ${reserved ? "opacity-45 grayscale" : "group-hover:scale-[1.03]"}`}>
+      <div className="relative aspect-[4/3] overflow-hidden border-b border-line/70 bg-white">
+        <div className={`size-full transition duration-500 ${reserved ? "opacity-40 grayscale" : "group-hover:scale-[1.04]"}`}>
           <GiftImage src={gift.imagem ?? null} alt={gift.nome} category={gift.categoria} />
         </div>
-        <span className="absolute left-3 top-3 rounded-full bg-card/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft backdrop-blur">
+        <span className="absolute left-3 top-3 rounded-full bg-stone-soft/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft">
           {categoryName}
         </span>
+        {gift.imagem && gift.imagemDaOutraOpcao && !reserved && !chosenByMe ? (
+          <span className="absolute bottom-2 right-3 text-[11px] text-muted">Foto da outra opção</span>
+        ) : null}
         {reserved || chosenByMe ? (
-          <span className="absolute inset-x-3 bottom-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-ink px-3 py-2 text-sm font-semibold text-paper">
+          <span
+            className={`absolute inset-x-3 bottom-3 inline-flex items-center justify-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold ${
+              chosenByMe ? "bg-accent text-white" : "bg-ink text-paper"
+            }`}
+          >
             <CheckIcon className="size-4" />
             {chosenByMe ? "Você escolheu este presente" : "Presente já escolhido"}
           </span>
@@ -42,38 +69,26 @@ export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
       <div className="flex flex-1 flex-col p-5">
         <h3 className="font-display text-xl leading-snug font-medium">{gift.nome}</h3>
         {gift.cor ? (
-          <p className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-xs font-medium text-ink-soft">
-            <span className="size-2.5 rounded-full bg-ink ring-2 ring-steel" aria-hidden />
+          <p className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-stone-soft px-2.5 py-1 text-xs font-medium text-ink-soft">
+            <span className="size-3 rounded-full ring-1 ring-ink/20" style={{ background: swatch(gift.cor) }} aria-hidden />
             {gift.cor}
           </p>
         ) : null}
         {gift.descricao ? <p className="mt-3 text-[15px] leading-relaxed text-muted">{gift.descricao}</p> : null}
 
         <div className="mt-auto pt-5">
-          <div className="flex items-end justify-between gap-3 border-t border-line pt-4">
-            <div>
-              <p className="text-xs text-muted">Preço de referência</p>
-              <p className="text-lg font-semibold">{price ?? "A confirmar"}</p>
-            </div>
+          <div className="flex items-end justify-between gap-3 border-t border-line pt-4 text-xs text-muted">
+            <p>
+              Valor de referência
+              <span className="block text-base font-semibold text-ink">{price ?? "A confirmar"}</span>
+            </p>
             {gift.loja ? (
-              <p className="text-right text-xs text-muted">
+              <p className="text-right">
                 {gift.loja}
                 {checkedAt ? <span className="block">consultado em {checkedAt}</span> : null}
               </p>
             ) : null}
           </div>
-
-          {gift.outroLink && gift.outraLoja ? (
-            <a
-              href={gift.outroLink}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="mt-2 inline-flex items-center gap-1 text-sm text-muted underline decoration-line underline-offset-4 hover:text-ink"
-            >
-              Outra opção: {gift.outraLoja}
-              {altPrice ? ` · ${altPrice}` : ""}
-            </a>
-          ) : null}
 
           <div className="mt-4 grid gap-2">
             {reserved ? (
@@ -84,22 +99,35 @@ export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
               <button
                 type="button"
                 onClick={() => onChoose(gift)}
-                className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-ink px-4 text-[15px] font-semibold text-paper transition-transform hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-ink px-4 text-[15px] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-accent active:translate-y-0"
               >
-                <GiftIcon className="size-[18px]" />
-                {chosenByMe ? "Enviar confirmação de novo" : "Quero presentear"}
+                <HeartIcon className="size-[18px]" />
+                {chosenByMe ? "Enviar confirmação de novo" : "Escolher este presente"}
               </button>
             )}
             {gift.link ? (
-              <a
-                href={gift.link}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="inline-flex min-h-12 items-center justify-center gap-1.5 rounded-full border border-ink/15 px-4 text-sm font-semibold transition-colors hover:border-ink/45"
-              >
-                Ver produto
-                <ExternalIcon className="size-4" />
-              </a>
+              <div className="flex flex-col items-center text-sm">
+                <a
+                  href={gift.link}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-ink-soft underline decoration-line underline-offset-4 hover:text-ink"
+                >
+                  Ver sugestão na loja
+                  <ExternalIcon className="size-4" />
+                </a>
+                {gift.outroLink && gift.outraLoja ? (
+                  <a
+                    href={gift.outroLink}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="py-1 text-center text-xs text-muted underline decoration-line underline-offset-4 hover:text-ink"
+                  >
+                    Outra opção: {gift.outraLoja}
+                    {altPrice ? ` · ${altPrice}` : ""}
+                  </a>
+                ) : null}
+              </div>
             ) : null}
           </div>
         </div>

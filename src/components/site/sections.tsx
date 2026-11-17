@@ -1,51 +1,53 @@
-import { CheckIcon, GiftIcon, WhatsappIcon } from "@/components/icons";
+import { CheckIcon, GiftIcon, HeartIcon, WhatsappIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
 import { linkWhatsapp, whatsappValido } from "@/lib/whatsapp";
+import { PresenceButton } from "./presence-button";
 import { Reveal } from "./reveal";
 
 const coupleLabel = evento.casal.replace(/\s*&\s*/, " e ");
 
 const steps = [
   {
-    icon: <GiftIcon className="size-5" />,
-    title: "Escolha um presente",
-    text: "Navegue pelas categorias e toque em “Quero presentear” no item que combina com você.",
+    icon: <CheckIcon className="size-5" />,
+    title: "Confirme que vem",
+    text: "Informe seu nome e se levará acompanhante. Leva menos de um minuto.",
   },
   {
-    icon: <CheckIcon className="size-5" />,
-    title: "Conte quem vem",
-    text: "Informe seu nome e se levará acompanhante. Leva menos de um minuto.",
+    icon: <GiftIcon className="size-5" />,
+    title: "Presente, se quiser",
+    text: "Dê uma olhada nas ideias da lista. Se algo combinar com você, é só escolher; se não, tudo bem.",
   },
   {
     icon: <WhatsappIcon className="size-5" />,
     title: "Envie pelo WhatsApp",
-    text: `A mensagem abre pronta para ${coupleLabel}. É só enviar para confirmar sua escolha.`,
+    text: `A mensagem abre pronta para ${coupleLabel}. É só tocar em enviar.`,
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section aria-labelledby="como-funciona" className="border-t border-line bg-paper py-16 sm:py-20">
+    <section aria-labelledby="como-funciona" className="bg-paper pt-16 sm:pt-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Como funciona</p>
+          <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
+            <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+            Como funciona
+          </p>
           <h2 id="como-funciona" className="mt-3 font-display text-3xl font-medium sm:text-4xl">
-            Três passos e pronto
+            Simples e sem compromisso
           </h2>
         </Reveal>
         <ol className="mt-10 grid gap-4 md:grid-cols-3">
           {steps.map((step, index) => (
             <li key={step.title}>
               <Reveal delay={index * 120} className="h-full">
-                <div className="h-full rounded-3xl border border-line bg-card p-6 shadow-card">
-                  <div className="flex items-center justify-between">
-                    <span className="grid size-11 place-items-center rounded-full bg-ink text-paper">{step.icon}</span>
-                    <span className="font-display text-4xl text-line" aria-hidden>
-                      0{index + 1}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted">{step.text}</p>
+                <div className="relative h-full overflow-hidden rounded-[1.75rem] border border-line/70 bg-card p-6 shadow-card">
+                  <span className="pointer-events-none absolute right-6 top-4 font-display text-6xl leading-none text-stone-soft" aria-hidden>
+                    {index + 1}
+                  </span>
+                  <span className="relative grid size-11 place-items-center rounded-2xl bg-ink text-paper">{step.icon}</span>
+                  <h3 className="relative mt-5 text-lg font-semibold">{step.title}</h3>
+                  <p className="relative mt-2 leading-relaxed text-muted">{step.text}</p>
                 </div>
               </Reveal>
             </li>
@@ -58,8 +60,12 @@ export function HowItWorks() {
 
 const faq = [
   {
+    q: "Preciso levar presente?",
+    a: "Não. O que mais queremos é ter você com a gente. A lista existe só para quem quiser presentear e ajuda a evitar presentes repetidos.",
+  },
+  {
     q: "Preciso comprar na loja do link?",
-    a: "Não. Os links são sugestões para facilitar; você pode comprar onde preferir. Só pedimos que o presente siga as cores indicadas (preto, inox ou prata), para combinar com a casa.",
+    a: "Não. Os links são sugestões para facilitar; você pode comprar onde preferir. Se puder, prefira as cores indicadas (preto, inox ou prata), que combinam com a casa.",
   },
   {
     q: "O preço pode estar diferente?",
@@ -81,10 +87,13 @@ const faq = [
 
 export function Faq() {
   return (
-    <section aria-labelledby="duvidas" className="border-t border-line bg-paper py-16 sm:py-20">
+    <section aria-labelledby="duvidas" className="border-t border-line bg-card py-16 sm:py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Dúvidas</p>
+          <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
+            <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+            Dúvidas
+          </p>
           <h2 id="duvidas" className="mt-3 font-display text-3xl font-medium sm:text-4xl">
             Perguntas frequentes
           </h2>
@@ -100,13 +109,13 @@ export function Faq() {
             </a>
           ) : null}
         </Reveal>
-        <div className="divide-y divide-line rounded-3xl border border-line bg-card px-5 sm:px-6">
+        <div className="divide-y divide-line rounded-[1.75rem] border border-line bg-paper px-5 sm:px-6">
           {faq.map((item) => (
             <details key={item.q} className="group py-4">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold [&::-webkit-details-marker]:hidden">
                 {item.q}
                 <span
-                  className="grid size-8 shrink-0 place-items-center rounded-full border border-line text-lg leading-none transition-transform group-open:rotate-45"
+                  className="grid size-8 shrink-0 place-items-center rounded-full bg-card text-lg leading-none text-accent shadow-card transition-transform group-open:rotate-45"
                   aria-hidden
                 >
                   +
@@ -116,6 +125,30 @@ export function Faq() {
             </details>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* Fechamento: convite para confirmar presença, sem falar de presente. */
+export function ClosingInvite() {
+  return (
+    <section className="bg-card pb-16 sm:pb-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <Reveal>
+          <div className="night-sky relative overflow-hidden rounded-[2rem] px-6 py-12 text-center text-white sm:px-12 sm:py-16">
+            <HeartIcon className="mx-auto size-8 text-glow" />
+            <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl leading-tight font-medium text-balance sm:text-5xl">
+              O mais importante é <em className="shine-text pr-[0.12em] font-normal">celebrar juntos</em>
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/75">
+              Vai ser uma alegria receber você na nossa casa nova. Confirme sua presença para a gente se organizar.
+            </p>
+            <PresenceButton className="mt-8 inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-accent px-8 text-base font-semibold text-white transition-transform hover:-translate-y-0.5">
+              Confirmar presença
+            </PresenceButton>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

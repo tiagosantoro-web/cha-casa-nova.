@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
-import { CategoryIcon } from "@/components/icons";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { CategoryIcon, HeartIcon } from "@/components/icons";
 import { categorias, presentes } from "@/data/presentes";
-import type { Presente } from "@/lib/types";
 import { GiftCard } from "./gift-card";
-import { ReserveDialog } from "./reserve-dialog";
+import { PRESENCE_EVENT, PresenceButton } from "./presence-button";
+import { ReserveDialog, type Selecao } from "./reserve-dialog";
 
 const STORAGE_KEY = "cha-casa-nova:minhas-escolhas";
 const CHOICES_EVENT = "cha-casa-nova:escolhas";
@@ -51,12 +51,18 @@ function subscribeChoices(callback: () => void) {
 export function GiftRegistry() {
   const [active, setActive] = useState<string>("todos");
   const [onlyAvailable, setOnlyAvailable] = useState(false);
-  const [selected, setSelected] = useState<Presente | null>(null);
+  const [selected, setSelected] = useState<Selecao | null>(null);
   const rawChoices = useSyncExternalStore(subscribeChoices, readRawChoices, () => "[]");
   const myChoices = useMemo(() => parseChoices(rawChoices), [rawChoices]);
 
+  // Botões "Confirmar presença" de outras seções abrem a mesma janela, sem presente.
+  useEffect(() => {
+    const openPresence = () => setSelected("presenca");
+    window.addEventListener(PRESENCE_EVENT, openPresence);
+    return () => window.removeEventListener(PRESENCE_EVENT, openPresence);
+  }, []);
+
   const categoryName = useMemo(() => new Map(categorias.map((category) => [category.slug, category.nome])), []);
-  const available = presentes.filter((gift) => !gift.escolhido).length;
   const chosenGifts = presentes.filter((gift) => myChoices.includes(gift.id));
 
   const visibleCategories = categorias.filter((category) => active === "todos" || category.slug === active);
@@ -64,36 +70,44 @@ export function GiftRegistry() {
     presentes.filter((gift) => gift.categoria === slug && (!onlyAvailable || !gift.escolhido));
 
   return (
-    <section id="presentes" className="scroll-mt-4 border-t border-line bg-card/60 pb-24 pt-16 sm:pt-20">
+    <section id="presentes" className="scroll-mt-4 bg-paper pb-24 pt-16 sm:pt-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[1fr_22rem] lg:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Nossa lista de presentes</p>
+            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
+              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+              Lista de presentes
+            </p>
             <h2 className="mt-3 font-display text-4xl leading-tight font-medium text-balance sm:text-5xl">
-              Escolha um presente para o nosso cantinho
+              Algumas ideias para o nosso cantinho
             </h2>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Estamos montando a casa em <strong className="font-semibold text-ink">preto e inox</strong>, e as sugestões
-              seguem essa combinação. Os links são só referências: compre onde preferir, desde que mantenha a cor.
+              Se quiser nos presentear, separamos sugestões em <strong className="font-semibold text-ink">preto e inox</strong>,
+              as cores da casa nova. Os links são só referências: fique à vontade para comprar onde preferir.
             </p>
           </div>
-          <div className="rounded-3xl border border-line bg-card px-5 py-4 shadow-card">
-            <p className="text-3xl font-semibold tabular-nums">
-              {available}
-              <span className="text-lg font-medium text-muted">/{presentes.length}</span>
+          <aside className="rounded-[1.75rem] border border-accent/20 bg-accent-soft p-5">
+            <p className="flex items-center gap-2 font-display text-xl font-medium text-ink">
+              <HeartIcon className="size-5 text-accent" />
+              Presente é opcional
             </p>
-            <p className="text-sm text-muted">presentes disponíveis</p>
-          </div>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Sua presença já é o melhor presente. Se preferir, é só confirmar que vem.
+            </p>
+            <PresenceButton className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-ink/15 bg-card px-5 text-[15px] font-semibold transition-colors hover:border-ink/40">
+              Só confirmar presença
+            </PresenceButton>
+          </aside>
         </div>
 
         {chosenGifts.length ? (
           <p className="mt-8 rounded-2xl border border-ok/20 bg-ok-soft px-5 py-4 text-ok">
-            Você escolheu: <strong>{chosenGifts.map((gift) => gift.nome).join(", ")}</strong>. Obrigado!
+            Você escolheu: <strong>{chosenGifts.map((gift) => gift.nome).join(", ")}</strong>. Obrigado pelo carinho!
           </p>
         ) : null}
 
         {/* Filtros: rolam na horizontal no celular e ficam presos ao topo. */}
-        <div className="sticky top-0 z-20 -mx-5 mt-10 border-b border-line bg-paper/90 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
+        <div className="sticky top-0 z-20 -mx-5 mt-10 border-b border-line/80 bg-paper/85 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
           <div className="-my-1 flex gap-2 overflow-x-auto py-1 [scrollbar-width:none]" role="group" aria-label="Filtrar por categoria">
             {[{ slug: "todos", nome: "Todos" }, ...categorias].map((category) => {
               const selectedTab = active === category.slug;
@@ -113,12 +127,12 @@ export function GiftRegistry() {
               );
             })}
           </div>
-          <label className="mt-2 inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-ink-soft">
+          <label className="mt-2 inline-flex min-h-8 cursor-pointer items-center gap-2 text-sm font-medium text-ink-soft">
             <input
               type="checkbox"
               checked={onlyAvailable}
               onChange={(event) => setOnlyAvailable(event.target.checked)}
-              className="size-4 accent-ink"
+              className="size-4 accent-accent"
             />
             Mostrar só os disponíveis
           </label>
@@ -133,8 +147,8 @@ export function GiftRegistry() {
             return (
               <div key={category.slug}>
                 <div className="mb-6 flex items-center gap-3">
-                  <span className="grid size-11 place-items-center rounded-full bg-ink text-paper">
-                    <CategoryIcon slug={category.slug} className="size-5" />
+                  <span className="grid size-12 place-items-center rounded-2xl border border-line bg-card text-ink">
+                    <CategoryIcon slug={category.slug} className="size-6" />
                   </span>
                   <div>
                     <h3 className="font-display text-2xl font-medium">{category.nome}</h3>
@@ -166,7 +180,7 @@ export function GiftRegistry() {
         </div>
       </div>
 
-      <ReserveDialog gift={selected} onClose={() => setSelected(null)} onConfirmed={(gift) => saveChoice(gift.id)} />
+      <ReserveDialog selection={selected} onClose={() => setSelected(null)} onConfirmed={(gift) => saveChoice(gift.id)} />
     </section>
   );
 }

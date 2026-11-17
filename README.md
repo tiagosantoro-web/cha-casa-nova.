@@ -1,16 +1,18 @@
 # Chá de casa nova — Tiago & Amanda
 
-Convite digital com lista de presentes. O convidado escolhe um presente, informa nome e acompanhante, e confirma pelo WhatsApp com a mensagem pronta para o casal.
+Convite digital com lista de presentes opcional. O convidado confirma presença (com ou sem presente), informa nome e acompanhante, e envia pelo WhatsApp a mensagem pronta para o casal.
 
 Site 100% estático: sem banco de dados, sem servidor e sem senhas. Feito com Next.js 16, React 19, TypeScript e Tailwind CSS 4.
 
 ## Como funciona
 
 1. O convidado abre o convite e vê data, horário e endereço (botão "Como chegar" no Google Maps).
-2. Na lista, filtra por categoria e toca em **Quero presentear**.
+2. Toca em **Confirmar presença** (sem presente) ou, se quiser presentear, filtra a lista por categoria e toca em **Escolher este presente**.
 3. Informa nome completo, se leva acompanhante (e o nome dele) e uma mensagem opcional.
 4. Confere o resumo e toca em **Confirmar minha escolha**. O WhatsApp abre com a mensagem pronta para o número do casal; o convidado só precisa enviar.
-5. No aparelho do convidado, o presente aparece como "Você escolheu este presente".
+5. No aparelho do convidado, o presente escolhido aparece como "Você escolheu este presente".
+
+O site deixa claro que o presente é opcional: no convite, no quadro "Presente é opcional" da lista, nas perguntas frequentes e no convite final.
 
 **Importante:** sem banco de dados, o site não bloqueia o presente para os outros convidados automaticamente. Quando o casal receber a confirmação, deve marcar o presente como escolhido (veja abaixo). A partir da nova publicação, ele aparece como "Presente já escolhido" para todos.
 
@@ -34,7 +36,7 @@ Em `src/data/evento.ts`, preencha `whatsapp` com DDI 55 + DDD + número, só dí
 ### Fotos
 
 - Foto do casal: coloque o arquivo em `public/` (ex.: `public/casal.jpg`) e preencha `foto: "/casal.jpg"`.
-- Foto de um presente: coloque em `public/presentes/` e acrescente `imagem: "/presentes/air-fryer.jpg"` no item. Sem foto, o card mostra um ícone da categoria.
+- Presentes: as fotos ficam em `public/presentes/` e foram baixadas dos anúncios da Amazon (link principal ou, quando marcado `imagemDaOutraOpcao: true`, da "outra opção", com a legenda "Foto da outra opção"). Itens das outras lojas ficaram sem foto, porque Mercado Livre e Magazine Luiza bloqueiam o acesso automático: o card mostra o ícone da categoria. Para pôr uma foto, salve o arquivo em `public/presentes/` e acrescente `imagem: "/presentes/nome.jpg"` no item.
 
 ## Rodar no computador
 
@@ -58,7 +60,7 @@ A pasta `out/` gerada pelo `npm run build` é o site completo.
 BASE_PATH=/nome-do-repositorio npm run build
 ```
 
-Depois publique o conteúdo de `out/` no ramo `gh-pages`, com um arquivo `.nojekyll` vazio (sem ele, o GitHub ignora a pasta `_next`). Com `BASE_PATH`, imagens em `public/` precisam do prefixo no caminho (ex.: `"/nome-do-repositorio/casal.jpg"`).
+Depois publique o conteúdo de `out/` no ramo `gh-pages`, com um arquivo `.nojekyll` vazio (sem ele, o GitHub ignora a pasta `_next`). As fotos em `public/` recebem o prefixo do `BASE_PATH` automaticamente.
 
 Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço final e publique de novo. É o que faz a imagem de prévia aparecer quando o link é compartilhado no WhatsApp.
 
@@ -75,6 +77,8 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 ## Testes realizados
 
 - Fluxo completo do convidado no celular (375 px): campos obrigatórios, resumo, link `wa.me` com o número configurado e a mensagem no formato combinado, tela final, card "Você escolheu este presente" e escolha lembrada no aparelho.
+- Redesign (17/11/2026): capturas no celular (375 px) e desktop (1280 px) de todas as seções, dos cards e da janela de confirmação; mensagem do WhatsApp conferida nos modos "só presença" e "com presente".
+- Fotos (17/11/2026): as 27 fotos referenciadas existem, são JPEG válidos (9–49 KB) e carregam no navegador; nenhum arquivo sobrando em `public/presentes/`.
 - Sem rolagem horizontal em 320, 375, 480, 768, 1024 e 1440 px.
 - `tsc`, ESLint e `next build` (exportação estática) sem erros.
 - Lighthouse ainda não foi executado.

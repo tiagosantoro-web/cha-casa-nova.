@@ -18,7 +18,7 @@ export function Countdown({ date }: { date: string | null }) {
 
   if (days === null || days < 0) return null;
   return (
-    <p className="mt-6 text-sm font-medium text-muted">
+    <p className="mt-6 text-sm font-medium text-white/70">
       {days === 0 ? "É hoje! Estamos esperando você." : days === 1 ? "Falta 1 dia." : `Faltam ${days} dias.`}
     </p>
   );

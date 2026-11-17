@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   output: "export",
   // Caminho do site quando publicado em subpasta (ex.: GitHub Pages "/cha-casa-nova"). Vazio na Vercel.
   basePath: process.env.BASE_PATH ?? "",
+  // Repassado ao navegador para montar o caminho das fotos em /public.
+  env: { NEXT_PUBLIC_BASE_PATH: process.env.BASE_PATH ?? "" },
   trailingSlash: true,
   images: { unoptimized: true },
   poweredByHeader: false,

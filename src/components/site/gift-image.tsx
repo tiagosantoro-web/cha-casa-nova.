@@ -2,31 +2,29 @@
 
 import { useState } from "react";
 import { CategoryIcon } from "@/components/icons";
+import { publicPath } from "@/lib/paths";
 
-/** Foto do presente com reserva visual (ícone da categoria) quando falta ou falha. */
+/** Foto do anúncio; sem foto (ou se ela falhar), mostra só o ícone da categoria. */
 export function GiftImage({ src, alt, category }: { src: string | null; alt: string; category: string }) {
   const [failed, setFailed] = useState(false);
 
   if (!src || failed) {
     return (
-      <div className="grain grid size-full place-items-center bg-stone-soft">
-        <span className="steel grid size-24 place-items-center rounded-full shadow-card ring-8 ring-card/60">
-          <CategoryIcon slug={category} className="size-11 text-ink" strokeWidth={1.3} />
-        </span>
+      <div className="grid size-full place-items-center bg-stone-soft">
+        <CategoryIcon slug={category} className="size-12 text-steel-dark" strokeWidth={1.1} />
       </div>
     );
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- imagens vêm de lojas e do Storage, cadastradas no painel
+    // eslint-disable-next-line @next/next/no-img-element -- site estático, imagem em /public
     <img
-      src={src}
+      src={publicPath(src)}
       alt={alt}
       loading="lazy"
       decoding="async"
-      referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
-      className="size-full object-contain p-4 mix-blend-multiply"
+      className="size-full object-contain p-5"
     />
   );
 }

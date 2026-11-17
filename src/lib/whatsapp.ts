@@ -5,7 +5,8 @@ type Confirmacao = {
   convidado: string;
   temAcompanhante: boolean;
   acompanhante: string;
-  presente: string;
+  /** null = só confirmação de presença, sem presente. */
+  presente: string | null;
   preco: number | null;
   mensagem: string;
   data: Date;
@@ -30,14 +31,17 @@ export function montarMensagem(dados: Confirmacao): string {
     `👥 *Acompanhante:* ${dados.temAcompanhante ? "Sim" : "Não"}`,
   ];
   if (dados.temAcompanhante) linhas.push("", `👤 *Nome do acompanhante:* ${dados.acompanhante}`);
-  linhas.push(
-    "",
-    `🎁 *Presente escolhido:* ${dados.presente}`,
-    "",
-    `💰 *Preço sugerido:* ${formatPrice(dados.preco) ?? "a confirmar"}`,
-    "",
-    `📅 *Data da confirmação:* ${quando}`,
-  );
+  if (dados.presente) {
+    linhas.push(
+      "",
+      `🎁 *Presente escolhido:* ${dados.presente}`,
+      "",
+      `💰 *Preço sugerido:* ${formatPrice(dados.preco) ?? "a confirmar"}`,
+    );
+  } else {
+    linhas.push("", "🎁 *Presente:* só confirmando presença");
+  }
+  linhas.push("", `📅 *Data da confirmação:* ${quando}`);
   if (dados.mensagem) linhas.push("", `💌 *Mensagem:* ${dados.mensagem}`);
   linhas.push("", `Oi, ${dados.casal.replace(/\s*&\s*/, " e ")}! Confirmo minha presença no chá de casa nova de vocês. 🥂`);
   return linhas.join("\n");

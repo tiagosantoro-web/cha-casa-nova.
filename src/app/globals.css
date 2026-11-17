@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
-/* Paleta neutra: papel, pedra, grafite e detalhes em "inox". */
+/* Paleta: preto, inox e cinzas da casa, com um acento terracota para dar calor. */
 @theme {
-  --color-paper: #f6f4f0;
+  --color-paper: #f5f4f1;
   --color-card: #ffffff;
-  --color-line: #e4e0d9;
-  --color-stone-soft: #ece8e1;
-  --color-muted: #6b675f;
-  --color-ink: #1b1a18;
-  --color-ink-soft: #34322e;
+  --color-line: #e7e4de;
+  --color-stone-soft: #efede8;
+  --color-muted: #67635c;
+  --color-ink: #151517;
+  --color-ink-soft: #3a3936;
+  --color-night: #111113;
   --color-steel: #a9adb1;
   --color-steel-dark: #6e7378;
+  --color-accent: #b65a37;
+  --color-accent-ink: #9c4728;
+  --color-accent-soft: #f7e8e0;
+  --color-glow: #ffd9a8;
   --color-whatsapp: #0e7a3e;
   --color-ok: #2f6b4f;
   --color-ok-soft: #e6f0ea;
@@ -22,8 +27,8 @@
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
 
-  --shadow-card: 0 1px 2px rgb(27 26 24 / 0.05), 0 8px 24px -12px rgb(27 26 24 / 0.18);
-  --shadow-lift: 0 2px 4px rgb(27 26 24 / 0.06), 0 22px 40px -18px rgb(27 26 24 / 0.32);
+  --shadow-card: 0 1px 2px rgb(21 21 23 / 0.04), 0 10px 30px -14px rgb(21 21 23 / 0.2);
+  --shadow-lift: 0 2px 4px rgb(21 21 23 / 0.06), 0 26px 44px -20px rgb(21 21 23 / 0.38);
 
   --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-fade: fade 0.4s ease-out both;
@@ -49,12 +54,12 @@
     font-family: var(--font-sans);
   }
   :focus-visible {
-    outline: 2px solid var(--color-ink);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
   }
   dialog::backdrop {
-    background: rgb(27 26 24 / 0.55);
-    backdrop-filter: blur(3px);
+    background: rgb(17 17 19 / 0.6);
+    backdrop-filter: blur(4px);
   }
 }
 
@@ -64,8 +69,23 @@
     background: linear-gradient(115deg, #d9dcdf 0%, #f4f5f6 22%, #b9bdc1 48%, #eceef0 70%, #a9adb1 100%);
   }
   .grain {
-    background-image: radial-gradient(rgb(27 26 24 / 0.035) 1px, transparent 1px);
+    background-image: radial-gradient(rgb(21 21 23 / 0.035) 1px, transparent 1px);
     background-size: 4px 4px;
+  }
+  /* Fundo do convite: noite com brilhos de luz quente e inox. */
+  .night-sky {
+    background:
+      radial-gradient(60% 50% at 85% 20%, rgb(182 90 55 / 0.32), transparent 70%),
+      radial-gradient(50% 45% at 10% 90%, rgb(169 173 177 / 0.18), transparent 70%),
+      radial-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px) 0 0 / 22px 22px,
+      var(--color-night);
+  }
+  /* Texto com brilho metálico quente. */
+  .shine-text {
+    background: linear-gradient(100deg, #ffd9a8 0%, #f0a07a 45%, #e9ecef 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .reveal {
     opacity: 0;

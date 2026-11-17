@@ -9,8 +9,11 @@ import { linkWhatsapp, montarMensagem, whatsappValido } from "@/lib/whatsapp";
 
 type Step = "form" | "review" | "done";
 
+/** Um presente escolhido, ou "presenca" para confirmar só a presença. */
+export type Selecao = Presente | "presenca";
+
 type Props = {
-  gift: Presente | null;
+  selection: Selecao | null;
   onClose: () => void;
   onConfirmed: (gift: Presente) => void;
 };
@@ -20,7 +23,7 @@ const inputClass =
 
 const coupleLabel = evento.casal.replace(/\s*&\s*/, " e ");
 
-export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
+export function ReserveDialog({ selection, onClose, onConfirmed }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const companionRef = useRef<HTMLInputElement>(null);
@@ -32,12 +35,12 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
   const [companionName, setCompanionName] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [shownGift, setShownGift] = useState<Presente | null>(gift);
+  const [shown, setShown] = useState<Selecao | null>(selection);
   const [sentAt, setSentAt] = useState<Date | null>(null);
 
-  // Mantém o presente visível durante o fechamento e recomeça a cada novo presente.
-  if (gift && gift !== shownGift) {
-    setShownGift(gift);
+  // Mantém o conteúdo visível durante o fechamento e recomeça a cada nova escolha.
+  if (selection && selection !== shown) {
+    setShown(selection);
     setStep("form");
     setErrors({});
   }
@@ -45,13 +48,14 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
-    if (gift && !dialog.open) {
+    if (selection && !dialog.open) {
       dialog.showModal();
       window.setTimeout(() => nameRef.current?.focus(), 50);
     }
-    if (!gift && dialog.open) dialog.close();
-  }, [gift]);
+    if (!selection && dialog.open) dialog.close();
+  }, [selection]);
 
+  const gift = shown && shown !== "presenca" ? shown : null;
   const name = cleanText(fullName, 120);
   const companion = cleanText(companionName, 120);
   const note = cleanText(message, 500);
@@ -69,7 +73,7 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
 
   const whatsappReady = whatsappValido(evento.whatsapp);
   const waUrl =
-    shownGift && whatsappReady
+    shown && whatsappReady
       ? linkWhatsapp(
           evento.whatsapp,
           montarMensagem({
@@ -77,15 +81,15 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
             convidado: name,
             temAcompanhante: Boolean(hasCompanion),
             acompanhante: companion,
-            presente: shownGift.nome,
-            preco: shownGift.preco,
+            presente: gift?.nome ?? null,
+            preco: gift?.preco ?? null,
             mensagem: note,
             data: sentAt ?? new Date(),
           }),
         )
       : null;
 
-  const price = formatPrice(shownGift?.preco);
+  const price = formatPrice(gift?.preco);
 
   return (
     <dialog
@@ -100,16 +104,16 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
       }}
       className="mx-0 mb-0 mt-auto max-h-[94dvh] w-full max-w-full overflow-y-auto rounded-t-[1.75rem] bg-card p-0 text-ink shadow-lift open:animate-rise sm:m-auto sm:max-w-lg sm:rounded-[1.75rem]"
     >
-      {shownGift ? (
+      {shown ? (
         <div className="p-6 sm:p-8">
           <div className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-line sm:hidden" aria-hidden />
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-ink">
                 {step === "form" ? "Passo 1 de 2 · Seus dados" : step === "review" ? "Passo 2 de 2 · Confirmar" : "Quase lá"}
               </p>
               <h2 id={titleId} className="mt-1 font-display text-2xl leading-tight font-medium">
-                {step === "done" ? "Obrigado pelo carinho!" : shownGift.nome}
+                {step === "done" ? "Obrigado pelo carinho!" : gift ? gift.nome : "Confirmar presença"}
               </h2>
             </div>
             <button
@@ -131,6 +135,12 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
               }}
               className="mt-6 space-y-5"
             >
+              {!gift ? (
+                <p className="rounded-2xl bg-accent-soft px-4 py-3 text-sm leading-relaxed text-accent-ink">
+                  Sem compromisso com presente: o que importa é ter você com a gente.
+                </p>
+              ) : null}
+
               <div>
                 <label htmlFor="fullName" className="mb-1.5 block text-sm font-semibold">
                   Seu nome completo
@@ -164,7 +174,7 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
                   ].map((option) => (
                     <label
                       key={option.label}
-                      className={`flex min-h-13 cursor-pointer items-center justify-center rounded-2xl border text-base font-semibold transition-colors has-focus-visible:outline-2 has-focus-visible:outline-ink ${
+                      className={`flex min-h-13 cursor-pointer items-center justify-center rounded-2xl border text-base font-semibold transition-colors has-focus-visible:outline-2 has-focus-visible:outline-accent ${
                         hasCompanion === option.value ? "border-ink bg-ink text-paper" : "border-line bg-paper hover:border-ink/40"
                       }`}
                     >
@@ -232,7 +242,7 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
 
               <button
                 type="submit"
-                className="inline-flex min-h-14 w-full cursor-pointer items-center justify-center rounded-full bg-ink px-6 text-base font-semibold text-paper transition-transform hover:-translate-y-0.5"
+                className="inline-flex min-h-14 w-full cursor-pointer items-center justify-center rounded-full bg-ink px-6 text-base font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-accent"
               >
                 Continuar
               </button>
@@ -245,9 +255,15 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
           {step === "review" ? (
             <div className="mt-6">
               <div className="rounded-3xl border border-line bg-paper p-5 text-[15px] leading-relaxed">
-                <p>Você está escolhendo presentear {coupleLabel} com:</p>
-                <p className="mt-3 font-display text-xl font-medium">{shownGift.nome}</p>
-                {price ? <p className="mt-1 text-sm text-muted">Preço de referência: {price}</p> : null}
+                {gift ? (
+                  <>
+                    <p>Você está escolhendo presentear {coupleLabel} com:</p>
+                    <p className="mt-3 font-display text-xl font-medium">{gift.nome}</p>
+                    {price ? <p className="mt-1 text-sm text-muted">Valor de referência: {price}</p> : null}
+                  </>
+                ) : (
+                  <p>Você está confirmando presença no chá de casa nova de {coupleLabel}.</p>
+                )}
                 <dl className="mt-4 space-y-1 border-t border-line pt-4">
                   <div>
                     <dt className="inline font-semibold">Convidado: </dt>
@@ -267,7 +283,7 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
                 </p>
               ) : (
                 <p className="mt-4 rounded-2xl bg-warn-soft px-4 py-3 text-sm leading-relaxed text-warn">
-                  A confirmação pelo WhatsApp ainda está sendo configurada. Volte em breve para concluir sua escolha.
+                  A confirmação pelo WhatsApp ainda está sendo configurada. Volte em breve para concluir.
                 </p>
               )}
 
@@ -288,12 +304,12 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
                     onClick={() => {
                       setSentAt(new Date());
                       setStep("done");
-                      onConfirmed(shownGift);
+                      if (gift) onConfirmed(gift);
                     }}
                     className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
                   >
                     <WhatsappIcon className="size-5" />
-                    Confirmar minha escolha
+                    {gift ? "Confirmar minha escolha" : "Confirmar presença"}
                   </a>
                 ) : null}
               </div>
@@ -305,13 +321,20 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
               <div className="flex items-start gap-3 rounded-3xl bg-ok-soft p-5 text-ok">
                 <CheckIcon className="mt-0.5 size-6 shrink-0" />
                 <p className="leading-relaxed">
-                  <strong>{name.split(" ")[0]}</strong>, abrimos o WhatsApp com a sua confirmação de{" "}
-                  <strong>{shownGift.nome}</strong>. Não esqueça de <strong>enviar a mensagem</strong>: é ela que garante o
-                  presente no seu nome.
+                  <strong>{name.split(" ")[0]}</strong>, abrimos o WhatsApp com a sua confirmação
+                  {gift ? (
+                    <>
+                      {" "}de <strong>{gift.nome}</strong>
+                    </>
+                  ) : (
+                    " de presença"
+                  )}
+                  . Não esqueça de <strong>enviar a mensagem</strong> para o casal receber.
                 </p>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                O WhatsApp não abriu? Use o botão abaixo. O link da loja é só uma sugestão: você pode comprar onde preferir.
+                O WhatsApp não abriu? Use o botão abaixo.
+                {gift ? " O link da loja é só uma sugestão: você pode comprar onde preferir." : ""}
               </p>
               <div className="mt-5 grid gap-2">
                 {waUrl ? (
@@ -325,14 +348,14 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
                     Abrir o WhatsApp de novo
                   </a>
                 ) : null}
-                {shownGift.link ? (
+                {gift?.link ? (
                   <a
-                    href={shownGift.link}
+                    href={gift.link}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-ink/15 px-6 font-semibold"
                   >
-                    Ver onde comprar
+                    Ver sugestão na loja
                     <ExternalIcon className="size-4" />
                   </a>
                 ) : null}
@@ -341,7 +364,7 @@ export function ReserveDialog({ gift, onClose, onConfirmed }: Props) {
                   onClick={onClose}
                   className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full px-6 text-sm font-semibold text-muted underline underline-offset-4"
                 >
-                  Voltar para a lista
+                  Voltar para o convite
                 </button>
               </div>
             </div>
