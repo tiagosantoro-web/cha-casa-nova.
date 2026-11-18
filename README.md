@@ -36,7 +36,7 @@ Em `src/data/evento.ts`, preencha `whatsapp` com DDI 55 + DDD + número, só dí
 ### Fotos
 
 - Foto do casal: coloque o arquivo em `public/` (ex.: `public/casal.jpg`) e preencha `foto: "/casal.jpg"`.
-- Presentes: as fotos ficam em `public/presentes/` e foram baixadas dos anúncios da Amazon (link principal ou, quando marcado `imagemDaOutraOpcao: true`, da "outra opção", com a legenda "Foto da outra opção"). Itens das outras lojas ficaram sem foto, porque Mercado Livre e Magazine Luiza bloqueiam o acesso automático: o card mostra o ícone da categoria. Para pôr uma foto, salve o arquivo em `public/presentes/` e acrescente `imagem: "/presentes/nome.jpg"` no item.
+- Presentes: as fotos ficam em `public/presentes/` e foram baixadas dos anúncios da Amazon (link principal ou, quando marcado `imagemDaOutraOpcao: true`, da "outra opção", com a legenda "Foto da outra opção"). Itens das outras lojas ficaram sem foto, porque Mercado Livre e Magazine Luiza bloqueiam o acesso automático: o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `air-fryer.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Itens sem foto hoje: `frigideira`, `air-fryer`, `potes`, `lixeira-cozinha`, `utensilios`, `edredom`, `caixas-organizadoras`, `lixeira-banheiro`, `prateleiras-banheiro`, `tabua-de-passar`, `luminaria`, `almofadas`, `manta-sofa`, `cesto-organizador`.
 
 ## Rodar no computador
 
@@ -78,7 +78,7 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 
 - Fluxo completo do convidado no celular (375 px): campos obrigatórios, resumo, link `wa.me` com o número configurado e a mensagem no formato combinado, tela final, card "Você escolheu este presente" e escolha lembrada no aparelho.
 - Redesign (17/11/2026): capturas no celular (375 px) e desktop (1280 px) de todas as seções, dos cards e da janela de confirmação; mensagem do WhatsApp conferida nos modos "só presença" e "com presente".
-- Fotos (17/11/2026): as 27 fotos referenciadas existem, são JPEG válidos (9–49 KB) e carregam no navegador; nenhum arquivo sobrando em `public/presentes/`.
+- Fotos (17/11/2026): as 28 fotos referenciadas existem, são JPEG válidos (9–51 KB) e carregam no navegador; nenhum arquivo sobrando em `public/presentes/`.
 - Sem rolagem horizontal em 320, 375, 480, 768, 1024 e 1440 px.
 - `tsc`, ESLint e `next build` (exportação estática) sem erros.
 - Lighthouse ainda não foi executado.

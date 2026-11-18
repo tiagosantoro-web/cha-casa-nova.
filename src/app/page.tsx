@@ -3,6 +3,7 @@ import { GiftRegistry } from "@/components/site/gift-registry";
 import { Hero } from "@/components/site/hero";
 import { ClosingInvite, Faq, HowItWorks } from "@/components/site/sections";
 import { evento } from "@/data/evento";
+import { fotosDosPresentes } from "@/lib/fotos";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
       <Hero />
       <main>
         <HowItWorks />
-        <GiftRegistry />
+        <GiftRegistry fotos={fotosDosPresentes()} />
         <Faq />
         <ClosingInvite />
       </main>

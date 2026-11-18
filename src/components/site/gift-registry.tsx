@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { CategoryIcon, HeartIcon } from "@/components/icons";
-import { categorias, presentes } from "@/data/presentes";
+import { categorias, presentes as listaDePresentes } from "@/data/presentes";
 import { GiftCard } from "./gift-card";
 import { PRESENCE_EVENT, PresenceButton } from "./presence-button";
 import { ReserveDialog, type Selecao } from "./reserve-dialog";
@@ -48,7 +48,12 @@ function subscribeChoices(callback: () => void) {
   };
 }
 
-export function GiftRegistry() {
+export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
+  // Item sem "imagem" nos dados usa a foto salva com o id dele em public/presentes/.
+  const presentes = useMemo(
+    () => listaDePresentes.map((gift) => ({ ...gift, imagem: gift.imagem ?? fotos[gift.id] })),
+    [fotos],
+  );
   const [active, setActive] = useState<string>("todos");
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [selected, setSelected] = useState<Selecao | null>(null);

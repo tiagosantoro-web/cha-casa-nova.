@@ -240,6 +240,7 @@ export const presentes: Presente[] = [
     preco: 3584, consultadoEm: CONSULTA, loja: "Amazon (busca)",
     link: "https://www.amazon.com.br/toalha-de-banho-cinza/s?k=toalha+de+banho+cinza",
     outraLoja: "Amazon (Buddemeyer Frape Dots)", outroLink: "https://www.amazon.com.br/Toalhas-Buddemeyer-Frape-Banho-Cinza/dp/B0CV8N8WNK", outroPreco: 17990,
+    imagem: "/presentes/jogo-de-toalhas.jpg", imagemDaOutraOpcao: true,
   },
   {
     id: "tapete-banheiro", categoria: "banheiro", escolhido: false,
@@ -356,7 +357,7 @@ export const presentes: Presente[] = [
     preco: 4749, consultadoEm: CONSULTA, loja: "Amazon",
     link: "https://www.amazon.com.br/Rel%C3%B3gio-Parede-Redondo-30-Funciona/dp/B0F8PDLY1V",
     outraLoja: "Amazon (fundo preto e alumínio escovado)", outroLink: "https://www.amazon.com.br/Silencioso-Alum%C3%ADnio-Decorativo-Minimalista-Escrit%C3%B3rio/dp/B0DTFP6H77", outroPreco: null,
-    imagem: "/presentes/relogio.jpg",
+    imagem: "/presentes/relogio.jpg", imagemDaOutraOpcao: true,
   },
   {
     id: "almofadas", categoria: "sala", escolhido: false,
