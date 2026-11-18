@@ -24,7 +24,7 @@ export const evento = {
   whatsapp: "",
 
   // Opcional: foto do casal em /public (ex.: "/casal.jpg"). Sem foto, o topo fica só com o texto.
-  foto: null as string | null,
+  foto: "/casal.jpg" as string | null,
 
   // PENDENTE: endereço público do site depois de publicado (sem barra no final).
   // Usado na imagem de prévia quando o link é compartilhado no WhatsApp.

@@ -25,9 +25,25 @@ export function Hero() {
   const [titleStart, ...titleRest] = evento.titulo.split(", ");
 
   return (
-    <header className="night-sky relative overflow-hidden text-white">
-      <div className={`mx-auto grid max-w-6xl items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:pt-16 lg:gap-16 lg:pb-20 ${evento.foto ? "lg:grid-cols-[1.1fr_0.9fr]" : "md:pb-16"}`}>
-        <div>
+    <header className="night-sky relative isolate overflow-hidden text-white">
+      <div className={`mx-auto grid max-w-6xl items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:pt-16 lg:gap-16 lg:pb-20 ${evento.foto ? "lg:min-h-[640px]" : "md:pb-16"}`}>
+        <span className="hero-aurora pointer-events-none absolute -z-10" aria-hidden />
+        {/* Foto do casal, fundida ao fundo: no celular abre o topo; no computador ocupa a lateral direita. */}
+        {evento.foto ? (
+          <figure className="hero-photo -mx-5 -mt-8 sm:-mx-8 md:-mt-16 lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:m-0 lg:w-[56%]">
+            {/* eslint-disable-next-line @next/next/no-img-element -- site estático, imagem em /public */}
+            <img
+              src={publicPath(evento.foto)}
+              alt={`Foto de ${evento.casal}`}
+              width={1200}
+              height={900}
+              className="photo-settle aspect-[4/3] w-full object-cover object-[58%_15%] opacity-90 sm:aspect-[16/9] lg:aspect-auto lg:h-full lg:opacity-80"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </figure>
+        ) : null}
+        <div className={evento.foto ? "relative -mt-10 sm:-mt-20 lg:mt-0 lg:max-w-[34rem]" : undefined}>
           <p className="animate-rise inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur">
             <span className="size-2 rounded-full bg-glow shadow-[0_0_12px_#ffd9a8]" aria-hidden />
             Chá de casa nova · {evento.casal}
@@ -54,7 +70,7 @@ export function Hero() {
           </div>
 
           <div className="animate-rise mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={{ animationDelay: "240ms" }}>
-            <PresenceButton className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-accent px-7 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgb(182_90_55/0.8)] transition-transform hover:-translate-y-0.5 active:translate-y-0">
+            <PresenceButton className="btn-shine inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-accent px-7 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgb(182_90_55/0.8)] transition-transform hover:-translate-y-0.5 active:translate-y-0">
               <HeartIcon className="size-5" />
               Confirmar presença
             </PresenceButton>
@@ -81,18 +97,6 @@ export function Hero() {
           <Countdown date={evento.data} />
         </div>
 
-        {/* Foto do casal (sem foto, o topo fica só com o texto). */}
-        {evento.foto ? (
-          <figure className="animate-rise relative mx-auto w-full max-w-[300px] sm:max-w-[360px] lg:max-w-[440px]" style={{ animationDelay: "200ms" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element -- site estático, imagem em /public */}
-            <img
-              src={publicPath(evento.foto)}
-              alt={`Foto de ${evento.casal}`}
-              className="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-lift ring-1 ring-white/15"
-              fetchPriority="high"
-            />
-          </figure>
-        ) : null}
       </div>
 
       <div className="mx-auto grid max-w-6xl gap-3 px-5 pb-14 sm:grid-cols-3 sm:px-8">

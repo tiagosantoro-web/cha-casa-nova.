@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { CategoryIcon, HeartIcon } from "@/components/icons";
 import { categorias, presentes as listaDePresentes } from "@/data/presentes";
 import { GiftCard } from "./gift-card";
+import { Reveal } from "./reveal";
 import { PRESENCE_EVENT, PresenceButton } from "./presence-button";
 import { ReserveDialog, type Selecao } from "./reserve-dialog";
 
@@ -164,14 +165,15 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
                 </div>
                 {list.length ? (
                   <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                    {list.map((gift) => (
-                      <GiftCard
-                        key={gift.id}
-                        gift={gift}
-                        categoryName={categoryName.get(gift.categoria) ?? ""}
-                        chosenByMe={myChoices.includes(gift.id)}
-                        onChoose={setSelected}
-                      />
+                    {list.map((gift, index) => (
+                      <Reveal key={gift.id} delay={(index % 3) * 90} className="h-full">
+                        <GiftCard
+                          gift={gift}
+                          categoryName={categoryName.get(gift.categoria) ?? ""}
+                          chosenByMe={myChoices.includes(gift.id)}
+                          onChoose={setSelected}
+                        />
+                      </Reveal>
                     ))}
                   </div>
                 ) : (

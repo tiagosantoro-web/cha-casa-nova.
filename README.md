@@ -35,7 +35,7 @@ Em `src/data/evento.ts`, preencha `whatsapp` com DDI 55 + DDD + número, só dí
 
 ### Fotos
 
-- Foto do casal: coloque o arquivo em `public/` (ex.: `public/casal.jpg`) e preencha `foto: "/casal.jpg"`.
+- Foto do casal: `public/casal.jpg` (1200×900), ligada em `foto` no `evento.ts`. No topo, ela se funde ao fundo escuro (classe `hero-photo` em `globals.css`); para trocar, substitua o arquivo mantendo o nome.
 - Presentes: as fotos ficam em `public/presentes/` e foram baixadas dos anúncios da Amazon (link principal ou, quando marcado `imagemDaOutraOpcao: true`, da "outra opção", com a legenda "Foto da outra opção"). Itens das outras lojas ficaram sem foto, porque Mercado Livre e Magazine Luiza bloqueiam o acesso automático: o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `air-fryer.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Itens sem foto hoje: `frigideira`, `air-fryer`, `potes`, `lixeira-cozinha`, `utensilios`, `edredom`, `caixas-organizadoras`, `lixeira-banheiro`, `prateleiras-banheiro`, `tabua-de-passar`, `luminaria`, `almofadas`, `manta-sofa`, `cesto-organizador`.
 
 ## Rodar no computador
@@ -89,7 +89,6 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 2. Endereço completo.
 3. Número de WhatsApp que receberá as confirmações.
 4. Endereço final do site (domínio ou link da Vercel/GitHub Pages).
-5. Foto do casal (opcional).
 
 ## Publicação atual
 
