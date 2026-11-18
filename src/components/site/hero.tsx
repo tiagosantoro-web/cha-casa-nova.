@@ -19,6 +19,17 @@ function InfoItem({ icon, label, value }: { icon: React.ReactNode; label: string
   );
 }
 
+// [esquerda %, topo %, tamanho px, duração s, atraso s]
+const BOKEH: [number, number, number, number, number][] = [
+  [8, 70, 90, 16, 0],
+  [22, 30, 40, 12, 3],
+  [38, 82, 60, 18, 6],
+  [55, 20, 110, 20, 2],
+  [68, 60, 50, 14, 8],
+  [80, 35, 80, 17, 4],
+  [92, 75, 36, 13, 10],
+];
+
 export function Hero() {
   const date = formatEventDate(evento.data);
   const time = formatEventTime(evento.horario);
@@ -28,16 +39,26 @@ export function Hero() {
     <header className="night-sky relative isolate overflow-hidden text-white">
       <div className={`mx-auto grid max-w-6xl items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:pt-16 lg:gap-16 lg:pb-20 ${evento.foto ? "lg:min-h-[640px]" : "md:pb-16"}`}>
         <span className="hero-aurora pointer-events-none absolute -z-10" aria-hidden />
+        {/* Pontos de luz decorativos (só transform e opacity). */}
+        <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+          {BOKEH.map(([left, top, size, time, delay]) => (
+            <span
+              key={`${left}-${top}`}
+              className="bokeh"
+              style={{ left: `${left}%`, top: `${top}%`, width: size, height: size, "--bokeh-time": `${time}s`, "--bokeh-delay": `${delay}s` } as React.CSSProperties}
+            />
+          ))}
+        </div>
         {/* Foto do casal, fundida ao fundo: no celular abre o topo; no computador ocupa a lateral direita. */}
         {evento.foto ? (
-          <figure className="hero-photo -mx-5 -mt-8 sm:-mx-8 md:-mt-16 lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:m-0 lg:w-[56%]">
+          <figure className="hero-photo opacity-60 lg:opacity-50 -mx-5 -mt-8 sm:-mx-8 md:-mt-16 lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:m-0 lg:w-[56%]">
             {/* eslint-disable-next-line @next/next/no-img-element -- site estático, imagem em /public */}
             <img
               src={publicPath(evento.foto)}
               alt={`Foto de ${evento.casal}`}
               width={1200}
               height={900}
-              className="photo-settle aspect-[4/3] w-full object-cover object-[58%_15%] opacity-90 sm:aspect-[16/9] lg:aspect-auto lg:h-full lg:opacity-80"
+              className="photo-settle aspect-[4/3] w-full object-cover object-[58%_15%] sm:aspect-[16/9] lg:aspect-auto lg:h-full"
               fetchPriority="high"
               decoding="async"
             />
