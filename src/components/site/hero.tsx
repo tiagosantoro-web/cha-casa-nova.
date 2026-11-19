@@ -37,6 +37,24 @@ export function Hero() {
 
   return (
     <header className="night-sky relative isolate overflow-hidden text-white">
+      {/* Foto do casal: versão desfocada cobre o bloco todo; a nítida se dissolve nela. Véus escuros mantêm o texto legível. */}
+      {evento.foto ? (
+        <figure
+          className="hero-photo pointer-events-none absolute inset-0 -z-10 m-0"
+          style={{ "--hero-photo": `url(${publicPath(evento.foto)})` } as React.CSSProperties}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- site estático, imagem em /public */}
+          <img
+            src={publicPath(evento.foto)}
+            alt={`Foto de ${evento.casal}`}
+            width={1200}
+            height={900}
+            className="hero-photo-img photo-settle"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </figure>
+      ) : null}
       <div className={`mx-auto grid max-w-6xl items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:pt-16 lg:gap-16 lg:pb-20 ${evento.foto ? "lg:min-h-[640px]" : "md:pb-16"}`}>
         <span className="hero-aurora pointer-events-none absolute -z-10" aria-hidden />
         {/* Pontos de luz decorativos (só transform e opacity). */}
@@ -49,22 +67,7 @@ export function Hero() {
             />
           ))}
         </div>
-        {/* Foto do casal, fundida ao fundo: no celular abre o topo; no computador ocupa a lateral direita. */}
-        {evento.foto ? (
-          <figure className="hero-photo opacity-60 lg:opacity-50 -mx-5 -mt-8 sm:-mx-8 md:-mt-16 lg:absolute lg:inset-y-0 lg:right-0 lg:-z-10 lg:m-0 lg:w-[56%]">
-            {/* eslint-disable-next-line @next/next/no-img-element -- site estático, imagem em /public */}
-            <img
-              src={publicPath(evento.foto)}
-              alt={`Foto de ${evento.casal}`}
-              width={1200}
-              height={900}
-              className="photo-settle aspect-[4/3] w-full object-cover object-[58%_15%] sm:aspect-[16/9] lg:aspect-auto lg:h-full"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </figure>
-        ) : null}
-        <div className={evento.foto ? "relative -mt-10 sm:-mt-20 lg:mt-0 lg:max-w-[34rem]" : undefined}>
+        <div className={evento.foto ? "pt-[72vw] sm:pt-[44vw] lg:pt-0 lg:max-w-[34rem]" : undefined}>
           <p className="animate-rise inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur">
             <span className="size-2 rounded-full bg-glow shadow-[0_0_12px_#ffd9a8]" aria-hidden />
             Chá de casa nova · {evento.casal}

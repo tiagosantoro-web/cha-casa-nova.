@@ -36,7 +36,7 @@ Em `src/data/evento.ts`, preencha `whatsapp` com DDI 55 + DDD + número, só dí
 ### Fotos
 
 - Foto do casal: `public/casal.jpg` (1200×900), ligada em `foto` no `evento.ts`. No topo, ela se funde ao fundo escuro (classe `hero-photo` em `globals.css`); para trocar, substitua o arquivo mantendo o nome.
-- Presentes: as fotos ficam em `public/presentes/` e foram baixadas dos anúncios da Amazon (link principal ou, quando marcado `imagemDaOutraOpcao: true`, da "outra opção", com a legenda "Foto da outra opção"). Itens das outras lojas ficaram sem foto, porque Mercado Livre e Magazine Luiza bloqueiam o acesso automático: o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `air-fryer.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Itens sem foto hoje: `frigideira`, `air-fryer`, `potes`, `lixeira-cozinha`, `utensilios`, `edredom`, `caixas-organizadoras`, `lixeira-banheiro`, `prateleiras-banheiro`, `tabua-de-passar`, `luminaria`, `almofadas`, `manta-sofa`, `cesto-organizador`.
+- Presentes: as fotos ficam em `public/presentes/` e foram baixadas do anúncio principal de cada item na Amazon (conferidas uma a uma). Sem foto, o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `almofadas.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Item sem foto hoje: `almofadas`.
 
 ## Rodar no computador
 
@@ -66,19 +66,19 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 
 ## Lista de presentes
 
-42 itens em 5 categorias, na combinação preto, inox e prata, priorizando o menor preço com avaliações razoáveis. Pesquisa feita em 17/11/2026 em Amazon, Mercado Livre, Magazine Luiza e Carrefour.
+42 itens em 5 categorias, na combinação preto, inox e prata, priorizando o menor preço com avaliações razoáveis e, sempre que o item é vendido em kit, o kit como sugestão principal (ex.: o porta-sabonete líquido virou um kit de banheiro com 6 peças; tábua de corte e cesto aramado também viraram kits). Lista validada em 19/11/2026.
 
-- Preços são referências daquela data e mudam com frequência. Sem preço confirmado: "A confirmar".
-- Lojas marcadas com "busca" levam a uma página de resultados, usada quando o anúncio mais barato não tinha link próprio confirmado.
+- Todos os links principais são da Amazon e foram abertos em 19/11/2026 para conferir produto, cor, estoque e preço. Preços mudam com frequência.
+- Mercado Livre e Magazine Luiza bloqueiam a conferência automática (tela de verificação ou erro 403). Links do Mercado Livre ficaram só como "outra opção", sem preço. Links da Magazine Luiza e do Carrefour (um deles quebrado) foram removidos.
 - Eletroportáteis: confira a voltagem (127 V ou 220 V).
-- Ferro de passar: não encontramos ferro a vapor preto econômico confirmado; ficou um modelo preto e cromado com preço a confirmar.
-- Caixas organizadoras: não encontramos opção econômica em tecido preto; a sugestão é de caixas pretas com tampa.
+- Itens com poucas unidades em estoque na consulta (canecas, porta-temperos, varal, cesto de roupas) trazem esse aviso na descrição.
+- O kit de banheiro de 6 peças já inclui uma lixeira pequena; a lixeira com pedal continua na lista como presente separado.
 
 ## Testes realizados
 
 - Fluxo completo do convidado no celular (375 px): campos obrigatórios, resumo, link `wa.me` com o número configurado e a mensagem no formato combinado, tela final, card "Você escolheu este presente" e escolha lembrada no aparelho.
 - Redesign (17/11/2026): capturas no celular (375 px) e desktop (1280 px) de todas as seções, dos cards e da janela de confirmação; mensagem do WhatsApp conferida nos modos "só presença" e "com presente".
-- Fotos (17/11/2026): as 28 fotos referenciadas existem, são JPEG válidos (9–51 KB) e carregam no navegador; nenhum arquivo sobrando em `public/presentes/`.
+- Lista (19/11/2026): 79 links abertos; corrigidos 2 produtos esgotados (panelas e escorredor), 1 sem estoque na Amazon (batedeira), 3 links quebrados (lixeira de cozinha, prateleiras, utensílios), 1 cor errada (relógio branco no lugar de preto) e 1 página de busca no lugar de produto (toalhas). As 41 fotos citadas existem e carregam no navegador.
 - Sem rolagem horizontal em 320, 375, 480, 768, 1024 e 1440 px.
 - `tsc`, ESLint e `next build` (exportação estática) sem erros.
 - Lighthouse ainda não foi executado.
