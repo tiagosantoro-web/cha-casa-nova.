@@ -37,7 +37,7 @@ export function Hero() {
 
   return (
     <header className="night-sky relative isolate overflow-hidden text-white">
-      {/* Foto do casal: versão desfocada cobre o bloco todo; a nítida se dissolve nela. Véus escuros mantêm o texto legível. */}
+      {/* Foto do casal cobrindo o bloco inteiro (no celular, nítida no alto e desfocada no resto), sob véus escuros. */}
       {evento.foto ? (
         <figure
           className="hero-photo pointer-events-none absolute inset-0 -z-10 m-0"
@@ -67,7 +67,7 @@ export function Hero() {
             />
           ))}
         </div>
-        <div className={evento.foto ? "pt-[72vw] sm:pt-[44vw] lg:pt-0 lg:max-w-[34rem]" : undefined}>
+        <div className={evento.foto ? "pt-[58vw] sm:pt-[34vw] lg:pt-0 lg:max-w-[34rem]" : undefined}>
           <p className="animate-rise inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur">
             <span className="size-2 rounded-full bg-glow shadow-[0_0_12px_#ffd9a8]" aria-hidden />
             Chá de casa nova · {evento.casal}
