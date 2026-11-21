@@ -33,7 +33,8 @@ type Props = {
 };
 
 export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
-  const reserved = gift.escolhido;
+  // O presente que o próprio visitante reservou continua com o botão para reenviar a confirmação.
+  const reserved = gift.escolhido && !chosenByMe;
   const price = formatPrice(gift.preco);
   const altPrice = formatPrice(gift.outroPreco);
   const checkedAt = formatShortDate(gift.consultadoEm);

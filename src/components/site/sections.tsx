@@ -1,5 +1,6 @@
 import { CheckIcon, GiftIcon, HeartIcon, WhatsappIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
+import { reservasAtivas } from "@/lib/reservas-ativas";
 import { linkWhatsapp, whatsappValido } from "@/lib/whatsapp";
 import { PresenceButton } from "./presence-button";
 import { Reveal } from "./reveal";
@@ -73,7 +74,9 @@ const faq = [
   },
   {
     q: "E se outra pessoa escolher o mesmo presente?",
-    a: `Assim que recebem as confirmações, ${coupleLabel} marcam o presente como escolhido na lista. Se duas pessoas escolherem o mesmo item antes disso, o casal combina com vocês pelo WhatsApp.`,
+    a: reservasAtivas
+      ? "Não tem como. Assim que alguém confirma a escolha, o presente fica indisponível na lista para todos os outros convidados."
+      : `Assim que recebem as confirmações, ${coupleLabel} marcam o presente como escolhido na lista. Se duas pessoas escolherem o mesmo item antes disso, o casal combina com vocês pelo WhatsApp.`,
   },
   {
     q: "E a voltagem dos eletroportáteis?",

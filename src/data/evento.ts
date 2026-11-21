@@ -23,6 +23,10 @@ export const evento = {
   // PENDENTE: WhatsApp que recebe as confirmações. DDI 55 + DDD + número, só dígitos.
   whatsapp: "",
 
+  // PENDENTE: endereço do Apps Script que bloqueia o presente assim que alguém escolhe
+  // (termina em /exec; veja o README). Vazio = o casal marca "escolhido" à mão em presentes.ts.
+  reservasUrl: "",
+
   // Opcional: foto do casal em /public (ex.: "/casal.jpg"). Sem foto, o topo fica só com o texto.
   foto: "/casal.jpg" as string | null,
 

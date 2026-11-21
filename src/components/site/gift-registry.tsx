@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { CategoryIcon, HeartIcon } from "@/components/icons";
 import { categorias, presentes as listaDePresentes } from "@/data/presentes";
+import { useReservas } from "@/lib/reservas";
 import { GiftCard } from "./gift-card";
 import { Reveal } from "./reveal";
 import { PRESENCE_EVENT, PresenceButton } from "./presence-button";
@@ -51,9 +52,16 @@ function subscribeChoices(callback: () => void) {
 
 export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
   // Item sem "imagem" nos dados usa a foto salva com o id dele em public/presentes/.
+  // Também fica indisponível o que outro convidado já reservou na planilha.
+  const reservados = useReservas();
   const presentes = useMemo(
-    () => listaDePresentes.map((gift) => ({ ...gift, imagem: gift.imagem ?? fotos[gift.id] })),
-    [fotos],
+    () =>
+      listaDePresentes.map((gift) => ({
+        ...gift,
+        imagem: gift.imagem ?? fotos[gift.id],
+        escolhido: gift.escolhido || reservados.includes(gift.id),
+      })),
+    [fotos, reservados],
   );
   const [active, setActive] = useState<string>("todos");
   const [onlyAvailable, setOnlyAvailable] = useState(false);
@@ -187,7 +195,12 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
         </div>
       </div>
 
-      <ReserveDialog selection={selected} onClose={() => setSelected(null)} onConfirmed={(gift) => saveChoice(gift.id)} />
+      <ReserveDialog
+        selection={selected}
+        alreadyMine={selected !== null && selected !== "presenca" && myChoices.includes(selected.id)}
+        onClose={() => setSelected(null)}
+        onConfirmed={(gift) => saveChoice(gift.id)}
+      />
     </section>
   );
 }

@@ -2,19 +2,19 @@
 
 Convite digital com lista de presentes opcional. O convidado confirma presença (com ou sem presente), informa nome e acompanhante, e envia pelo WhatsApp a mensagem pronta para o casal.
 
-Site 100% estático: sem banco de dados, sem servidor e sem senhas. Feito com Next.js 16, React 19, TypeScript e Tailwind CSS 4.
+Site 100% estático, sem senhas no código. Os presentes reservados ficam numa planilha do Google (opcional, veja abaixo). Feito com Next.js 16, React 19, TypeScript e Tailwind CSS 4.
 
 ## Como funciona
 
 1. O convidado abre o convite e vê data, horário e endereço (botão "Como chegar" no Google Maps).
 2. Toca em **Confirmar presença** (sem presente) ou, se quiser presentear, filtra a lista por categoria e toca em **Escolher este presente**.
 3. Informa nome completo, se leva acompanhante (e o nome dele) e uma mensagem opcional.
-4. Confere o resumo e toca em **Confirmar minha escolha**. O WhatsApp abre com a mensagem pronta para o número do casal; o convidado só precisa enviar.
+4. Confere o resumo e toca em **Confirmar minha escolha**. Com a planilha de reservas ligada, o presente é reservado nesse momento e fica indisponível para todos os outros convidados. Em seguida, toca em **Enviar no WhatsApp**: a mensagem abre pronta para o número do casal e o convidado só precisa enviar.
 5. No aparelho do convidado, o presente escolhido aparece como "Você escolheu este presente".
 
 O site deixa claro que o presente é opcional: no convite, no quadro "Presente é opcional" da lista, nas perguntas frequentes e no convite final.
 
-**Importante:** sem banco de dados, o site não bloqueia o presente para os outros convidados automaticamente. Quando o casal receber a confirmação, deve marcar o presente como escolhido (veja abaixo). A partir da nova publicação, ele aparece como "Presente já escolhido" para todos.
+**Importante:** o bloqueio automático só funciona depois de configurar a planilha de reservas (veja "Bloquear presentes automaticamente"). Até lá, o casal marca o presente como escolhido à mão, e ele só aparece como "Presente já escolhido" a partir da nova publicação.
 
 ## Onde editar
 
@@ -24,10 +24,28 @@ O site deixa claro que o presente é opcional: no convite, no quadro "Presente �
 | Lista de presentes, preços, links e "já escolhido" | [src/data/presentes.ts](src/data/presentes.ts) |
 | Perguntas frequentes e "Como funciona" | [src/components/site/sections.tsx](src/components/site/sections.tsx) |
 | Formato da mensagem do WhatsApp | [src/lib/whatsapp.ts](src/lib/whatsapp.ts) |
+| Reservas (site e script da planilha) | [src/lib/reservas.ts](src/lib/reservas.ts) e [google-apps-script/reservas.gs](google-apps-script/reservas.gs) |
 
-### Marcar um presente como escolhido
+### Bloquear presentes automaticamente
 
-Em `src/data/presentes.ts`, troque `escolhido: false` por `escolhido: true` no presente e publique de novo.
+Uma planilha do Google guarda os presentes reservados. Quando um convidado confirma a escolha, o site reserva o item na planilha antes de abrir o WhatsApp. Se duas pessoas tentarem o mesmo item, só a primeira consegue; a segunda vê o aviso e escolhe outro. A lista de quem está com o site aberto se atualiza a cada 30 segundos e ao voltar para a aba.
+
+A planilha guarda só o id do presente e a data da reserva. Nome, acompanhante e mensagem continuam indo apenas no WhatsApp.
+
+Para ligar (uma vez, com a conta Google do casal):
+
+1. Crie uma planilha em branco em [sheets.new](https://sheets.new) (ex.: "Reservas do chá").
+2. Na planilha, abra **Extensões > Apps Script**, apague o conteúdo do editor e cole o arquivo [google-apps-script/reservas.gs](google-apps-script/reservas.gs). Salve.
+3. Clique em **Implantar > Nova implantação**. Em tipo, escolha **App da Web**. Use **Executar como: eu** e **Quem pode acessar: Qualquer pessoa**. Clique em **Implantar** e autorize o acesso à planilha.
+4. Copie o **URL do app da Web** (termina em `/exec`) e cole em `reservasUrl`, no `src/data/evento.ts`. Publique o site de novo.
+
+A aba "Reservas" é criada na primeira reserva. Para **liberar um presente**, apague a linha dele nessa aba. Se mudar o código do script, use **Implantar > Gerenciar implantações > Editar > Nova versão** para manter o mesmo endereço.
+
+O endereço do script não é uma senha: ele só permite ver a lista e reservar um item livre. Se alguém reservar algo indevidamente, basta apagar a linha.
+
+### Marcar um presente como escolhido à mão
+
+Em `src/data/presentes.ts`, troque `escolhido: false` por `escolhido: true` no presente e publique de novo. Funciona com ou sem a planilha.
 
 ### Configurar o WhatsApp
 
@@ -115,6 +133,14 @@ Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência n
   - As 71 fotos carregam no navegador, em 375 e 1440 px.
   - A aba "Ferramentas e utilidades" filtra corretamente.
   - Nenhum erro no console.
+- Reservas (21/11/2026): testadas no Chrome (375 px) com a planilha simulada, porque o script ainda não foi implantado na conta do casal:
+  - Item já reservado aparece como indisponível ao abrir o site.
+  - Reservar um item livre bloqueia o item e libera o botão do WhatsApp.
+  - Se outro convidado reservou o item antes, aparece o aviso e o card fica indisponível.
+  - Sem internet, aparece o aviso e "Tentar de novo" funciona.
+  - Reserva feita em outro aparelho aparece ao voltar para a aba.
+  - Em outro aparelho, os itens reservados aparecem como indisponíveis e o contador da categoria diminui.
+  - Nenhum erro no console e sem rolagem horizontal.
 - Sem rolagem horizontal em 320, 375, 480, 768, 1024 e 1440 px.
 - `tsc`, ESLint e `next build` (exportação estática) sem erros.
 - Lighthouse ainda não foi executado.
@@ -125,6 +151,7 @@ Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência n
 2. Endereço completo.
 3. Número de WhatsApp que receberá as confirmações.
 4. Endereço final do site (domínio ou link da Vercel/GitHub Pages).
+5. Implantar o script da planilha de reservas e preencher `reservasUrl` (veja "Bloquear presentes automaticamente").
 
 ## Publicação atual
 

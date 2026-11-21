@@ -1,19 +1,23 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { ArrowLeftIcon, CheckIcon, CloseIcon, ExternalIcon, WhatsappIcon } from "@/components/icons";
+import { ArrowLeftIcon, CheckIcon, CloseIcon, ExternalIcon, HeartIcon, WhatsappIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
 import { cleanText, formatPrice } from "@/lib/format";
+import { reservarPresente, reservasAtivas, type ResultadoReserva } from "@/lib/reservas";
 import type { Presente } from "@/lib/types";
 import { linkWhatsapp, montarMensagem, whatsappValido } from "@/lib/whatsapp";
 
 type Step = "form" | "review" | "done";
+type Reserva = "livre" | "reservando" | ResultadoReserva;
 
 /** Um presente escolhido, ou "presenca" para confirmar só a presença. */
 export type Selecao = Presente | "presenca";
 
 type Props = {
   selection: Selecao | null;
+  /** true = o visitante já reservou este presente neste aparelho. */
+  alreadyMine: boolean;
   onClose: () => void;
   onConfirmed: (gift: Presente) => void;
 };
@@ -23,7 +27,7 @@ const inputClass =
 
 const coupleLabel = evento.casal.replace(/\s*&\s*/, " e ");
 
-export function ReserveDialog({ selection, onClose, onConfirmed }: Props) {
+export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const companionRef = useRef<HTMLInputElement>(null);
@@ -37,12 +41,14 @@ export function ReserveDialog({ selection, onClose, onConfirmed }: Props) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [shown, setShown] = useState<Selecao | null>(selection);
   const [sentAt, setSentAt] = useState<Date | null>(null);
+  const [reserva, setReserva] = useState<Reserva>("livre");
 
   // Mantém o conteúdo visível durante o fechamento e recomeça a cada nova escolha.
   if (selection && selection !== shown) {
     setShown(selection);
     setStep("form");
     setErrors({});
+    setReserva("livre");
   }
 
   useEffect(() => {
@@ -90,6 +96,16 @@ export function ReserveDialog({ selection, onClose, onConfirmed }: Props) {
       : null;
 
   const price = formatPrice(gift?.preco);
+
+  // Com a planilha de reservas ligada, o presente é bloqueado antes de abrir o WhatsApp.
+  const needsReservation = Boolean(gift) && reservasAtivas && !alreadyMine && reserva !== "ok";
+  const reserve = async () => {
+    if (!gift || reserva === "reservando") return;
+    setReserva("reservando");
+    const result = await reservarPresente(gift.id);
+    setReserva(result);
+    if (result === "ok") onConfirmed(gift);
+  };
 
   return (
     <dialog
@@ -276,7 +292,29 @@ export function ReserveDialog({ selection, onClose, onConfirmed }: Props) {
                 </dl>
               </div>
 
-              {waUrl ? (
+              {waUrl && reserva === "ok" ? (
+                <p className="mt-4 flex items-start gap-2 rounded-2xl bg-ok-soft px-4 py-3 text-sm leading-relaxed text-ok" role="status">
+                  <CheckIcon className="mt-0.5 size-4 shrink-0" />
+                  <span>
+                    Presente reservado para você: ele já aparece como indisponível para os outros convidados. Agora envie a
+                    confirmação pelo WhatsApp para {coupleLabel}.
+                  </span>
+                </p>
+              ) : waUrl && reserva === "ja-escolhido" ? (
+                <p className="mt-4 rounded-2xl bg-warn-soft px-4 py-3 text-sm leading-relaxed text-warn" role="alert">
+                  Poxa, outro convidado acabou de escolher este presente. Ele já aparece como indisponível na lista; se quiser,
+                  escolha outro.
+                </p>
+              ) : waUrl && reserva === "erro" ? (
+                <p className="mt-4 rounded-2xl bg-warn-soft px-4 py-3 text-sm leading-relaxed text-warn" role="alert">
+                  Não conseguimos reservar o presente agora. Confira sua internet e tente de novo.
+                </p>
+              ) : waUrl && needsReservation ? (
+                <p className="mt-4 text-sm leading-relaxed text-muted">
+                  Ao confirmar, o presente fica reservado para você e some da lista dos outros convidados. Depois é só enviar
+                  a mensagem pronta para {coupleLabel} no WhatsApp.
+                </p>
+              ) : waUrl ? (
                 <p className="mt-4 text-sm leading-relaxed text-muted">
                   Ao confirmar, o WhatsApp abre com a mensagem pronta para {coupleLabel}.{" "}
                   <strong className="font-semibold text-ink">Toque em enviar</strong> para concluir.
@@ -296,7 +334,26 @@ export function ReserveDialog({ selection, onClose, onConfirmed }: Props) {
                   <ArrowLeftIcon className="size-4" />
                   Editar
                 </button>
-                {waUrl ? (
+                {waUrl && needsReservation && reserva === "ja-escolhido" ? (
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-ink px-6 text-base font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-accent"
+                  >
+                    Escolher outro presente
+                  </button>
+                ) : waUrl && needsReservation ? (
+                  <button
+                    type="button"
+                    onClick={reserve}
+                    disabled={reserva === "reservando"}
+                    aria-busy={reserva === "reservando"}
+                    className="inline-flex min-h-14 cursor-pointer items-center justify-center gap-2 rounded-full bg-ink px-6 text-base font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-accent disabled:cursor-wait disabled:opacity-70"
+                  >
+                    <HeartIcon className="size-5" />
+                    {reserva === "reservando" ? "Reservando…" : reserva === "erro" ? "Tentar de novo" : "Confirmar minha escolha"}
+                  </button>
+                ) : waUrl ? (
                   <a
                     href={waUrl}
                     target="_blank"
@@ -309,7 +366,7 @@ export function ReserveDialog({ selection, onClose, onConfirmed }: Props) {
                     className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
                   >
                     <WhatsappIcon className="size-5" />
-                    {gift ? "Confirmar minha escolha" : "Confirmar presença"}
+                    {!gift ? "Confirmar presença" : reserva === "ok" ? "Enviar no WhatsApp" : "Confirmar minha escolha"}
                   </a>
                 ) : null}
               </div>
