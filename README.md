@@ -32,7 +32,7 @@ Uma planilha do Google guarda os presentes reservados. Quando um convidado confi
 
 A planilha guarda só o id do presente e a data da reserva. Nome, acompanhante e mensagem continuam indo apenas no WhatsApp.
 
-Para ligar (uma vez, com a conta Google do casal):
+Ligada em 21/11/2026: planilha na conta Google do casal, script implantado como app da Web e endereço preenchido em `reservasUrl`. Para refazer em outra conta:
 
 1. Crie uma planilha em branco em [sheets.new](https://sheets.new) (ex.: "Reservas do chá").
 2. Na planilha, abra **Extensões > Apps Script**, apague o conteúdo do editor e cole o arquivo [google-apps-script/reservas.gs](google-apps-script/reservas.gs). Salve.
@@ -151,7 +151,6 @@ Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência n
 2. Endereço completo.
 3. Número de WhatsApp que receberá as confirmações.
 4. Endereço final do site (domínio ou link da Vercel/GitHub Pages).
-5. Implantar o script da planilha de reservas e preencher `reservasUrl` (veja "Bloquear presentes automaticamente").
 
 ## Publicação atual
 

@@ -25,7 +25,7 @@ export const evento = {
 
   // PENDENTE: endereço do Apps Script que bloqueia o presente assim que alguém escolhe
   // (termina em /exec; veja o README). Vazio = o casal marca "escolhido" à mão em presentes.ts.
-  reservasUrl: "",
+  reservasUrl: "https://script.google.com/macros/s/AKfycbyrDETthGcNe2OwZa-6NStVpDj9A3NugBXFKGkRcB7EASsdVr_AYHqQnB60m6rSp1CQ/exec",
 
   // Opcional: foto do casal em /public (ex.: "/casal.jpg"). Sem foto, o topo fica só com o texto.
   foto: "/casal.jpg" as string | null,
