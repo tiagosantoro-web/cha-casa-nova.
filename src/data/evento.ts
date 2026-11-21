@@ -30,7 +30,7 @@ export const evento = {
   // Opcional: foto do casal em /public (ex.: "/casal.jpg"). Sem foto, o topo fica só com o texto.
   foto: "/casal.jpg" as string | null,
 
-  // PENDENTE: endereço público do site depois de publicado (sem barra no final).
-  // Usado na imagem de prévia quando o link é compartilhado no WhatsApp.
-  siteUrl: "",
+  // Endereço público do site (sem barra no final). Usado na imagem de prévia quando o link
+  // é compartilhado no WhatsApp. Troque se o site mudar de endereço.
+  siteUrl: "https://tiagosantoro-web.github.io/cha-casa-nova.",
 };

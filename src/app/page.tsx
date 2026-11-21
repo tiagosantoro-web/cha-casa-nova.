@@ -24,7 +24,7 @@ export default function Home() {
             </p>
             <p className="mt-2 text-white/65">Obrigado por fazer parte deste novo começo.</p>
           </div>
-          <a href="#presentes" className="text-sm font-semibold text-white/85 underline decoration-white/30 underline-offset-4 hover:text-white">
+          <a href="#presentes" className="inline-flex min-h-11 items-center text-sm font-semibold text-white/85 underline decoration-white/30 underline-offset-4 hover:text-white">
             Voltar para a lista de presentes
           </a>
         </div>

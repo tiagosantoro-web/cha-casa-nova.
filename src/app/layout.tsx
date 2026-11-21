@@ -18,7 +18,8 @@ const description =
   "Convite e lista de presentes do chá de casa nova de Tiago & Amanda. Escolha um presente e confirme sua presença.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(evento.siteUrl || "http://localhost:3000"),
+  // Só o domínio: os caminhos gerados já incluem a subpasta do GitHub Pages.
+  metadataBase: new URL("/", evento.siteUrl || "http://localhost:3000"),
   title: "Chá de casa nova | Tiago & Amanda",
   description,
   openGraph: {

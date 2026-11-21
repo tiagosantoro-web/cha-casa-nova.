@@ -78,6 +78,10 @@
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
   }
+  /* Com a janela de confirmação aberta, a página de trás não rola. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
   dialog::backdrop {
     background: rgb(17 17 19 / 0.6);
     backdrop-filter: blur(4px);
@@ -211,14 +215,17 @@
   .btn-shine:hover::after {
     transform: translateX(120%);
   }
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
+  /* Só esconde para animar quando o JavaScript está ativo; sem ele, tudo aparece normalmente. */
+  @media (scripting: enabled) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 

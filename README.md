@@ -141,6 +141,18 @@ Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência n
   - Reserva feita em outro aparelho aparece ao voltar para a aba.
   - Em outro aparelho, os itens reservados aparecem como indisponíveis e o contador da categoria diminui.
   - Nenhum erro no console e sem rolagem horizontal.
+- Revisão geral (21/11/2026), no site publicado:
+  - Sem rolagem horizontal em 320, 360, 375, 414, 768, 1024, 1280 e 1920 px; nenhuma imagem quebrada.
+  - 1 H1, sem saltos de título, sem ids repetidos, todas as imagens com `alt`, todos os campos com rótulo, links externos com `noopener`.
+  - Janela de confirmação: abre com foco no nome, valida campos obrigatórios, fecha com Esc; filtros por categoria e "só disponíveis" corretos.
+  - Página completa (rolando até o fim) com cerca de 2,6 MB; nada se desloca durante o carregamento.
+  - Com "reduzir movimento" ativado, tudo aparece sem animação.
+  - Corrigido nesta revisão:
+    - A imagem de prévia apontava para `localhost`; agora usa o endereço publicado.
+    - Sem JavaScript, os presentes ficavam invisíveis; agora aparecem normalmente.
+    - Com a janela aberta, a página de trás não rola mais.
+    - O link do rodapé ganhou área de toque maior.
+  - Compatibilidade: o Next.js 16 e o Tailwind 4 pedem navegadores a partir de iOS/Safari 16.4, Chrome e Edge 111 e Firefox 128. Em aparelhos mais antigos (ex.: iPhone 7 ou anteriores), o visual pode sair diferente. Só o Chrome foi testado; Safari e Firefox não.
 - Sem rolagem horizontal em 320, 375, 480, 768, 1024 e 1440 px.
 - `tsc`, ESLint e `next build` (exportação estática) sem erros.
 - Lighthouse ainda não foi executado.
@@ -150,7 +162,6 @@ Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência n
 1. Data e horário.
 2. Endereço completo.
 3. Número de WhatsApp que receberá as confirmações.
-4. Endereço final do site (domínio ou link da Vercel/GitHub Pages).
 
 ## Publicação atual
 
