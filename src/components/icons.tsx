@@ -140,6 +140,9 @@ const categoryPaths: Record<string, React.ReactNode> = {
       <path d="M12 10v9M8.5 21h7" />
     </>
   ),
+  utilidades: (
+    <path d="M14.7 6.3a4 4 0 0 0 5 5L21 12.6l-8.4 8.4a2 2 0 0 1-2.8-2.8l8.4-8.4M14.7 6.3 12 3.6M3 21l4-4" />
+  ),
 };
 
 export function CategoryIcon({ slug, ...props }: IconProps & { slug: string }) {

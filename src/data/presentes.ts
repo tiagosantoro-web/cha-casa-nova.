@@ -7,6 +7,8 @@
     (produto, cor, estoque e preço). Mercado Livre e Magazine Luiza bloqueiam a conferência
     automática; esses links ficam só como "outra opção", sem preço.
   - Sempre que o item é vendido em kit, o kit é a sugestão principal.
+  - Inclusão de 21/11/2026: 23 itens novos, conferidos na Amazon da mesma forma (produto, cor,
+    estoque, preço e avaliações).
 */
 import type { Categoria, Presente } from "@/lib/types";
 
@@ -14,11 +16,14 @@ export const categorias: Categoria[] = [
   { slug: "cozinha", nome: "Cozinha" },
   { slug: "quarto", nome: "Quarto" },
   { slug: "banheiro", nome: "Banheiro" },
-  { slug: "lavanderia", nome: "Lavanderia" },
+  { slug: "lavanderia", nome: "Lavanderia e limpeza" },
+  { slug: "utilidades", nome: "Ferramentas e utilidades" },
   { slug: "sala", nome: "Sala e decoração" },
 ];
 
 const CONSULTA = "2026-11-19";
+// Itens incluídos em 21/11/2026, pensando na primeira casa e sem repetir os anteriores.
+const CONSULTA_NOVOS = "2026-11-21";
 
 export const presentes: Presente[] = [
   // COZINHA ------------------------------------------------------------
@@ -185,6 +190,106 @@ export const presentes: Presente[] = [
     imagem: "/presentes/tabua-de-corte.jpg",
   },
 
+  {
+    id: "jogo-de-facas", categoria: "cozinha", escolhido: false,
+    nome: "Jogo de facas com cepo (6 peças)", cor: "Cabo preto",
+    descricao: "Tramontina Plenus, lâminas de aço inox.",
+    preco: 7319, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B07K32CH6K",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/jogo-de-facas.jpg",
+  },
+  {
+    id: "panela-de-pressao", categoria: "cozinha", escolhido: false,
+    nome: "Panela de pressão antiaderente 4,5 litros", cor: "Preta",
+    descricao: "Tramontina Vancouver Effect, 20 cm, antiaderente Starflon Max por dentro e por fora. Confira se é compatível com o fogão.",
+    preco: 16190, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0CD4SCM33",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/panela-de-pressao.jpg",
+  },
+  {
+    id: "assadeiras", categoria: "cozinha", escolhido: false,
+    nome: "Jogo de assadeiras antiaderentes (2 peças)", cor: "Preto",
+    descricao: "Tramontina Brasil, alumínio com antiaderente Starflon Max.",
+    preco: 6987, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0CDVV676G",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/assadeiras.jpg",
+  },
+  {
+    id: "refratarios", categoria: "cozinha", escolhido: false,
+    nome: "Refratários de vidro (kit com 3)", cor: "Vidro transparente",
+    descricao: "Marinex Celebrity retangulares: vão ao forno e à mesa.",
+    preco: 7949, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0016LHBHM",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/refratarios.jpg",
+  },
+  {
+    id: "micro-ondas", categoria: "cozinha", escolhido: false,
+    nome: "Micro-ondas 20 litros", cor: "Preto",
+    descricao: "Mondial MO-01-21-B, 1200 W, versão 220 V. A 110 V está na outra opção (estava sem oferta direta da Amazon na consulta).",
+    preco: 41422, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B09NHW7BMR",
+    outraLoja: "Amazon (mesmo modelo, 110 V)", outroLink: "https://www.amazon.com.br/dp/B09NL894P6", outroPreco: null,
+    imagem: "/presentes/micro-ondas.jpg",
+  },
+  {
+    id: "tacas", categoria: "cozinha", escolhido: false,
+    nome: "Taças de vinho (kit com 6)", cor: "Vidro transparente",
+    descricao: "Nadir Barone, 385 ml.",
+    preco: 4490, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0778Y6DGY",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/tacas.jpg",
+  },
+  {
+    id: "garrafa-termica", categoria: "cozinha", escolhido: false,
+    nome: "Garrafa térmica 1 litro", cor: "Preta",
+    descricao: "Termolar Magic Pump, com sistema de pressão.",
+    preco: 5182, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B079ZH2RXK",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/garrafa-termica.jpg",
+  },
+  {
+    id: "panos-de-prato", categoria: "cozinha", escolhido: false,
+    nome: "Panos de copa (kit com 6)", cor: "Cores sortidas",
+    descricao: "Teka Chef.",
+    preco: 6231, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0FB415RBN",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/panos-de-prato.jpg",
+  },
+  {
+    id: "jogo-americano", categoria: "cozinha", escolhido: false,
+    nome: "Jogo americano (kit com 6)", cor: "Preto",
+    descricao: "Retangular, 30 x 44 cm, PVC com fibras.",
+    preco: 3089, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0HJ9ZR6WW",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/jogo-americano.jpg",
+  },
+  {
+    id: "escorredor-de-massa", categoria: "cozinha", escolhido: false,
+    nome: "Escorredores de macarrão e de arroz (kit com 2)", cor: "Inox",
+    descricao: "Aço inox, para massas, arroz e legumes. Poucas unidades em estoque na consulta.",
+    preco: 5498, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0D8CXW9VP",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/escorredor-de-massa.jpg",
+  },
+  {
+    id: "ralador", categoria: "cozinha", escolhido: false,
+    nome: "Ralador 4 faces com coletor", cor: "Inox",
+    descricao: "Brinox Top Pratic, 20,5 cm, com recipiente que recolhe o que foi ralado.",
+    preco: 3390, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B08PHZ58XQ",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/ralador.jpg",
+  },
+
   // QUARTO -------------------------------------------------------------
   {
     id: "jogo-de-cama", categoria: "quarto", escolhido: false,
@@ -239,6 +344,34 @@ export const presentes: Presente[] = [
     link: "https://www.amazon.com.br/Cabides-Veludo-Antideslizante-Roupas-Preto/dp/B0BSHFFZH4",
     outraLoja: "Mercado Livre (preto e prata)", outroLink: "https://www.mercadolivre.com.br/kit-50-cabide-veludo-slim-antideslizante-ultra-fino-cor-pretoprata/p/MLB23069478", outroPreco: null,
     imagem: "/presentes/cabides.jpg",
+  },
+
+  {
+    id: "protetor-de-colchao", categoria: "quarto", escolhido: false,
+    nome: "Protetor de colchão impermeável casal", cor: "Branco",
+    descricao: "Fibrasca O Silencioso, 140 x 190 cm. Confira o tamanho do colchão.",
+    preco: 9688, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B09G9KGJNS",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/protetor-de-colchao.jpg",
+  },
+  {
+    id: "cortina-blackout", categoria: "quarto", escolhido: false,
+    nome: "Cortina blackout 2,80 x 1,60 m", cor: "Preta",
+    descricao: "Bloqueia a luz. Confira a medida da janela.",
+    preco: 5202, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B08HHD3F5H",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/cortina-blackout.jpg",
+  },
+  {
+    id: "sapateira", categoria: "quarto", escolhido: false,
+    nome: "Sapateira de 3 andares", cor: "Preta",
+    descricao: "SONGMICS, estrutura de metal, 92 x 30 x 55 cm.",
+    preco: 5568, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B08MJMN4Q9",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/sapateira.jpg",
   },
 
   // BANHEIRO -----------------------------------------------------------
@@ -353,6 +486,72 @@ export const presentes: Presente[] = [
     imagem: "/presentes/kit-limpeza.jpg",
   },
 
+  {
+    id: "aspirador", categoria: "lavanderia", escolhido: false,
+    nome: "Aspirador de pó vertical 2 em 1", cor: "Cinza",
+    descricao: "Electrolux STK15, 1450 W, filtro HEPA, vira aspirador de mão. Versão 127 V; a 220 V está na outra opção.",
+    preco: 16490, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B094X2N4HV",
+    outraLoja: "Amazon (mesmo modelo, 220 V)", outroLink: "https://www.amazon.com.br/dp/B0921BLCG4", outroPreco: 16490,
+    imagem: "/presentes/aspirador.jpg",
+  },
+  {
+    id: "kit-vassoura-rodo", categoria: "lavanderia", escolhido: false,
+    nome: "Kit vassoura, rodo e pá", cor: "Verde",
+    descricao: "Noviça Premium: vassoura multiuso, rodo de silicone 40 cm e pá articulada, todos com cabo.",
+    preco: 9898, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0FFBFK6D5",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/kit-vassoura-rodo.jpg",
+  },
+  {
+    id: "prendedores", categoria: "lavanderia", escolhido: false,
+    nome: "Prendedores de roupa emborrachados (12 unidades)", cor: "Coloridos",
+    descricao: "Bettanin EsfreBom.",
+    preco: 1499, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B07WNS4CHR",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/prendedores.jpg",
+  },
+
+  // FERRAMENTAS E UTILIDADES -----------------------------------------
+  {
+    id: "maleta-ferramentas", categoria: "utilidades", escolhido: false,
+    nome: "Maleta de ferramentas (kit com 129 peças)", cor: "Preta e laranja",
+    descricao: "Sparta: chaves, alicates, martelo, trena e bits, tudo na maleta.",
+    preco: 6716, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B076N2S8FV",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/maleta-ferramentas.jpg",
+  },
+  {
+    id: "furadeira", categoria: "utilidades", escolhido: false,
+    nome: "Furadeira de impacto com acessórios", cor: "Laranja e preta",
+    descricao: "BLACK+DECKER BED713650, 650 W, mandril de 13 mm, versão 110 V.",
+    preco: 17990, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0FHY773C4",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/furadeira.jpg",
+  },
+  {
+    id: "filtro-de-linha", categoria: "utilidades", escolhido: false,
+    nome: "Filtro de linha 6 tomadas", cor: "Preto",
+    descricao: "Fortrek, tomadas no padrão 2P+T.",
+    preco: 2537, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B075BLXX61",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/filtro-de-linha.jpg",
+  },
+  {
+    id: "lampadas-led", categoria: "utilidades", escolhido: false,
+    nome: "Lâmpadas LED 9 W (kit com 10)", cor: "Luz branca fria",
+    descricao: "Elgin, bivolt, base E27.",
+    preco: 3499, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0879Y4CY5",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/lampadas-led.jpg",
+  },
+
   // SALA E DECORAÇÃO ---------------------------------------------------
   {
     id: "luminaria", categoria: "sala", escolhido: false,
@@ -406,5 +605,23 @@ export const presentes: Presente[] = [
     link: "https://www.amazon.com.br/dp/B0HK2NRWXV",
     outraLoja: "Amazon (cesto avulso 30 x 20 cm)", outroLink: "https://www.amazon.com.br/dp/B0GJJMNPLG", outroPreco: 4370,
     imagem: "/presentes/cesto-organizador.jpg",
+  },
+  {
+    id: "ventilador", categoria: "sala", escolhido: false,
+    nome: "Ventilador de coluna 40 cm", cor: "Preto e prata",
+    descricao: "Mondial Turbo 8 pás VTX-40C-8P, 140 W, versão 110 V. A 220 V está na outra opção.",
+    preco: 21900, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B07YSS57X5",
+    outraLoja: "Amazon (mesmo modelo, 220 V)", outroLink: "https://www.amazon.com.br/dp/B07Z51KP17", outroPreco: 21900,
+    imagem: "/presentes/ventilador.jpg",
+  },
+  {
+    id: "tapete-sala", categoria: "sala", escolhido: false,
+    nome: "Tapete para sala 2,00 x 1,40 m", cor: "Cinza mescla",
+    descricao: "Antiderrapante.",
+    preco: 8999, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0D6STFFG4",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/tapete-sala.jpg",
   },
 ];

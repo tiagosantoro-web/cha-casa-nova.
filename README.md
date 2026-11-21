@@ -36,7 +36,7 @@ Em `src/data/evento.ts`, preencha `whatsapp` com DDI 55 + DDD + número, só dí
 ### Fotos
 
 - Foto do casal: `public/casal.jpg` (1200×900), ligada em `foto` no `evento.ts`. No topo, ela se funde ao fundo escuro (classe `hero-photo` em `globals.css`); para trocar, substitua o arquivo mantendo o nome.
-- Presentes: as fotos ficam em `public/presentes/` e foram baixadas do anúncio principal de cada item na Amazon (conferidas uma a uma). Sem foto, o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `almofadas.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Item sem foto hoje: `almofadas`.
+- Presentes: as fotos ficam em `public/presentes/` e foram baixadas do anúncio principal de cada item na Amazon (conferidas uma a uma). Sem foto, o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `almofadas.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Item sem foto hoje: `almofadas` (64 dos 65 itens têm foto).
 
 ## Rodar no computador
 
@@ -66,12 +66,33 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 
 ## Lista de presentes
 
-42 itens em 5 categorias, na combinação preto, inox e prata, priorizando o menor preço com avaliações razoáveis e, sempre que o item é vendido em kit, o kit como sugestão principal (ex.: o porta-sabonete líquido virou um kit de banheiro com 6 peças; tábua de corte e cesto aramado também viraram kits). Lista validada em 19/11/2026.
+65 itens em 6 categorias: Cozinha, Quarto, Banheiro, Lavanderia e limpeza, Ferramentas e utilidades e Sala e decoração.
+
+Os critérios são:
+
+- Combinação preto, inox e prata.
+- Menor preço com avaliações razoáveis.
+- Kit como sugestão principal sempre que o item é vendido em kit. Exemplos: o porta-sabonete líquido virou um kit de banheiro com 6 peças; a tábua de corte e o cesto aramado também viraram kits.
+
+A lista original foi validada em 19/11/2026.
+
+Em 21/11/2026 entraram 23 itens pensando na primeira casa, sem repetir os anteriores. Cada link foi conferido da mesma forma.
+
+- **Cozinha:** facas com cepo, panela de pressão, assadeiras, refratários, micro-ondas, taças, garrafa térmica, panos de copa, jogo americano, escorredores e ralador.
+- **Quarto:** protetor de colchão, cortina blackout e sapateira.
+- **Lavanderia e limpeza:** aspirador vertical, kit vassoura, rodo e pá e prendedores.
+- **Ferramentas e utilidades (categoria nova):** maleta de ferramentas, furadeira, filtro de linha e lâmpadas LED.
+- **Sala:** ventilador de coluna e tapete.
+
+Alguns itens fogem da paleta porque só existem nessas cores: a furadeira laranja, o kit de limpeza verde e os prendedores coloridos.
+
+Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência na hora.
 
 - Todos os links principais são da Amazon e foram abertos em 19/11/2026 para conferir produto, cor, estoque e preço. Preços mudam com frequência.
 - Mercado Livre e Magazine Luiza bloqueiam a conferência automática (tela de verificação ou erro 403). Links do Mercado Livre ficaram só como "outra opção", sem preço. Links da Magazine Luiza e do Carrefour (um deles quebrado) foram removidos.
 - Eletroportáteis: confira a voltagem (127 V ou 220 V).
-- Itens com poucas unidades em estoque na consulta (canecas, porta-temperos, varal, cesto de roupas) trazem esse aviso na descrição.
+- Itens com poucas unidades em estoque na consulta trazem esse aviso na descrição: canecas, porta-temperos, varal, cesto de roupas e escorredores de massa.
+- Micro-ondas: a versão 110 V estava sem oferta direta da Amazon, então o link principal é a 220 V, e a 110 V fica como outra opção.
 - O kit de banheiro de 6 peças já inclui uma lixeira pequena; a lixeira com pedal continua na lista como presente separado.
 
 ## Testes realizados
@@ -79,6 +100,11 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 - Fluxo completo do convidado no celular (375 px): campos obrigatórios, resumo, link `wa.me` com o número configurado e a mensagem no formato combinado, tela final, card "Você escolheu este presente" e escolha lembrada no aparelho.
 - Redesign (17/11/2026): capturas no celular (375 px) e desktop (1280 px) de todas as seções, dos cards e da janela de confirmação; mensagem do WhatsApp conferida nos modos "só presença" e "com presente".
 - Lista (19/11/2026): 79 links abertos; corrigidos 2 produtos esgotados (panelas e escorredor), 1 sem estoque na Amazon (batedeira), 3 links quebrados (lixeira de cozinha, prateleiras, utensílios), 1 cor errada (relógio branco no lugar de preto) e 1 página de busca no lugar de produto (toalhas). As 41 fotos citadas existem e carregam no navegador.
+- Inclusão de 21/11/2026:
+  - 23 páginas de produto abertas para conferir produto, cor, estoque, preço e avaliações.
+  - As 64 fotos carregam no navegador, em 375 e 1440 px.
+  - A aba "Ferramentas e utilidades" filtra corretamente.
+  - Nenhum erro no console.
 - Sem rolagem horizontal em 320, 375, 480, 768, 1024 e 1440 px.
 - `tsc`, ESLint e `next build` (exportação estática) sem erros.
 - Lighthouse ainda não foi executado.
