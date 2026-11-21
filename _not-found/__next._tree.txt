@@ -1,4 +1,4 @@
-:HL["/cha-casa-nova./_next/static/chunks/35rlumfftuvv8.css","style"]
+:HL["/cha-casa-nova./_next/static/chunks/18pvb8rrp7vcz.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"OlNbKO9UMXKYL6FKhVQO8","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"Gs4bA3U245uor3gGLCimi","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
