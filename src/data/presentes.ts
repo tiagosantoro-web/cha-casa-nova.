@@ -22,7 +22,7 @@ export const categorias: Categoria[] = [
 ];
 
 const CONSULTA = "2026-11-19";
-// Itens incluídos em 21/11/2026, pensando na primeira casa e sem repetir os anteriores.
+// Itens incluídos em 21/11/2026 (primeira casa e mais itens de sala), sem repetir os anteriores.
 const CONSULTA_NOVOS = "2026-11-21";
 
 export const presentes: Presente[] = [
@@ -623,5 +623,68 @@ export const presentes: Presente[] = [
     link: "https://www.amazon.com.br/dp/B0D6STFFG4",
     outraLoja: null, outroLink: null, outroPreco: null,
     imagem: "/presentes/tapete-sala.jpg",
+  },
+  {
+    id: "mesa-de-centro", categoria: "sala", escolhido: false,
+    nome: "Mesa de centro redonda com cesto", cor: "Tampo preto e cesto cinza",
+    descricao: "VASAGLE, estrutura de aço e cesto de tecido embaixo para guardar mantas e revistas. Poucas unidades em estoque na consulta.",
+    preco: 27520, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0CSFLB8YJ",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/mesa-de-centro.jpg",
+  },
+  {
+    id: "mesas-de-apoio", categoria: "sala", escolhido: false,
+    nome: "Mesas de apoio (kit com 2)", cor: "Tampo preto e pés de madeira",
+    descricao: "Kit Duplo Classic, uma maior e uma menor, para o lado do sofá.",
+    preco: 13890, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0D9KFHJBR",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/mesas-de-apoio.jpg",
+  },
+  {
+    id: "luminaria-de-chao", categoria: "sala", escolhido: false,
+    nome: "Luminária de chão articulada 1,9 m", cor: "Preta",
+    descricao: "Braço articulado para direcionar a luz na leitura.",
+    preco: 15547, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B092XMRC2V",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/luminaria-de-chao.jpg",
+  },
+  {
+    id: "espelho-redondo", categoria: "sala", escolhido: false,
+    nome: "Espelho redondo decorativo 61 cm", cor: "Moldura preta",
+    descricao: "SONGMICS, moldura de metal.",
+    preco: 16999, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B08CXT9T23",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/espelho-redondo.jpg",
+  },
+  {
+    id: "porta-retratos", categoria: "sala", escolhido: false,
+    nome: "Porta-retratos 10 x 15 (kit com 10)", cor: "Pretos",
+    descricao: "Para as primeiras fotos da casa nova.",
+    preco: 7890, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B07MY5YTJZ",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/porta-retratos.jpg",
+  },
+  {
+    id: "puff", categoria: "sala", escolhido: false,
+    nome: "Puff redondo", cor: "Preto",
+    descricao: "Estofado em suede, serve de banqueta ou apoio para os pés.",
+    preco: 6990, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0FXGWSLDG",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/puff.jpg",
+  },
+  {
+    id: "difusor-de-aromas", categoria: "sala", escolhido: false,
+    nome: "Difusor de aromas com varetas", cor: null,
+    descricao: "Salutar, 165 ml, fragrância capim-limão.",
+    preco: 2521, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0942BJRCP",
+    outraLoja: null, outroLink: null, outroPreco: null,
+    imagem: "/presentes/difusor-de-aromas.jpg",
   },
 ];
