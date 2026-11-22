@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { Fragment, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { CategoryIcon, HeartIcon } from "@/components/icons";
 import { categorias, presentes as listaDePresentes } from "@/data/presentes";
 import { useReservas } from "@/lib/reservas";
@@ -159,13 +159,16 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
         </div>
 
         <div className="mt-10 space-y-16">
-          {visibleCategories.map((category) => {
+          {visibleCategories.map((category, categoryIndex) => {
             const list = giftsFor(category.slug);
             const total = presentes.filter((gift) => gift.categoria === category.slug);
             if (!total.length) return null;
             const free = total.filter((gift) => !gift.escolhido).length;
+            // A piada do carro entra no meio da lista (depois da categoria do meio).
+            const piadaAqui = categoryIndex === Math.max(0, Math.ceil(visibleCategories.length / 2) - 1);
             return (
-              <div key={category.slug}>
+              <Fragment key={category.slug}>
+              <div>
                 <div className="mb-6 flex items-center gap-3">
                   <span className="grid size-12 place-items-center rounded-2xl border border-line bg-card text-ink">
                     <CategoryIcon slug={category.slug} className="size-6" />
@@ -203,11 +206,12 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
                   </p>
                 )}
               </div>
+              {piadaAqui ? <CarJoke /> : null}
+              </Fragment>
             );
           })}
         </div>
 
-        <CarJoke />
       </div>
 
       <ReserveDialog

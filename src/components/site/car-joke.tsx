@@ -6,10 +6,10 @@ import { Reveal } from "./reveal";
 const CARRO_URL =
   "https://www.webmotors.com.br/comprar/bmw/m2/30-24v-i6-gasolina-competition-coupe-m-dct/2-portas/2018-2019/82428376";
 
-/** Piada no fim da lista: não entra nas reservas nem na contagem de presentes. */
+/** Piada no meio da lista (depois da categoria do meio): não entra nas reservas nem na contagem de presentes. */
 export function CarJoke() {
   return (
-    <Reveal className="mt-16">
+    <Reveal>
       <article id="carro" className="scroll-mt-28 night-sky relative overflow-hidden rounded-[2rem] text-white shadow-lift">
         <div className="grid lg:grid-cols-[1.1fr_1fr]">
           <div className="relative aspect-[16/10] lg:aspect-auto">
@@ -27,9 +27,9 @@ export function CarJoke() {
           </div>
 
           <div className="p-6 sm:p-8 lg:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Último item da lista</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Uma pausa na lista</p>
             <h3 className="mt-2 font-display text-3xl leading-tight font-medium text-balance">
-              Chegou até aqui e não gostou de nada?
+              Chegou até aqui e ainda não gostou de nada?
             </h3>
             <p className="mt-3 text-lg leading-relaxed text-white/80">
               Tudo bem, a gente entende. Para esses casos, temos uma sugestão alternativa: uma{" "}
