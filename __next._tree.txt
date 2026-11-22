@@ -3,4 +3,4 @@
 :HL["/cha-casa-nova./_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/cha-casa-nova./casal.jpg","image",{"fetchPriority":"high"}]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"X6Gj5raZAaaLhlFBwxJA1","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"xK-aud33WXk79ACMbb0IW","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
