@@ -249,10 +249,10 @@ export const presentes: Presente[] = [
   {
     id: "garrafa-termica", categoria: "cozinha", escolhido: false,
     nome: "Garrafa térmica 1 litro", cor: "Preta",
-    descricao: "Termolar Magic Pump, com sistema de pressão.",
-    preco: 5182, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B079ZH2RXK",
-    outraLoja: null, outroLink: null, outroPreco: null,
+    descricao: "Cabo de madeira e bico de servir, para café quente ou água gelada. Na outra opção, Termolar Magic Pump preta.",
+    preco: null, consultadoEm: null, loja: "Mercado Livre",
+    link: "https://www.mercadolivre.com.br/garrafa-termica-1-litro-cabo-madeira-cafe-quente-agua-gelada-cor-preto/p/MLB36216956?pdp_filters=item_id%3AMLB4127649041",
+    outraLoja: "Amazon (Termolar Magic Pump 1 L)", outroLink: "https://www.amazon.com.br/dp/B079ZH2RXK", outroPreco: 5182,
     imagem: "/presentes/garrafa-termica.jpg",
   },
   {
