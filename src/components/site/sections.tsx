@@ -1,6 +1,7 @@
-import { CheckIcon, GiftIcon, HeartIcon, PinIcon, WhatsappIcon } from "@/components/icons";
+import { CheckIcon, ExternalIcon, GiftIcon, HeartIcon, PinIcon, WhatsappIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
-import { mapaEmbedUrl, mapsUrl } from "@/lib/format";
+import { mapaEmbedUrl, mapsUrl, wazeUrl } from "@/lib/format";
+import { CopyAddress } from "./copy-address";
 import { reservasAtivas } from "@/lib/reservas-ativas";
 import { linkWhatsapp, whatsappValido } from "@/lib/whatsapp";
 import { PresenceButton } from "./presence-button";
@@ -158,8 +159,8 @@ export function ClosingInvite() {
               </PresenceButton>
             </div>
             {evento.endereco ? (
-              <div className="flex flex-col border-t border-white/10 lg:border-t-0 lg:border-l">
-                <div className="relative min-h-[260px] flex-1">
+              <div id="local" className="flex scroll-mt-6 flex-col border-t border-white/10 lg:border-t-0 lg:border-l">
+                <div className="relative min-h-[280px] flex-1">
                   <iframe
                     title={`Mapa do local: ${evento.endereco}`}
                     src={mapaEmbedUrl(evento.endereco)}
@@ -168,16 +169,33 @@ export function ClosingInvite() {
                     className="absolute inset-0 size-full border-0"
                   />
                 </div>
-                <a
-                  href={mapsUrl(evento.endereco)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex min-h-14 items-center gap-3 px-6 py-4 text-left text-[15px] font-medium text-white/85 transition-colors hover:bg-white/[0.06] hover:text-white"
-                >
-                  <PinIcon className="size-5 shrink-0 text-glow" />
-                  <span className="min-w-0 flex-1">{evento.endereco}</span>
-                  <span className="shrink-0 text-sm font-semibold text-glow underline underline-offset-4">Abrir no mapa</span>
-                </a>
+                <div className="px-6 py-5">
+                  <p className="flex items-start gap-2.5 text-[15px] font-medium text-white/90">
+                    <PinIcon className="mt-0.5 size-5 shrink-0 text-glow" />
+                    {evento.endereco}
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    <a
+                      href={mapsUrl(evento.endereco)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-white/20 bg-white/[0.06] px-3 text-[15px] font-semibold text-white transition-colors hover:border-white/45"
+                    >
+                      <PinIcon className="size-[18px]" />
+                      Google Maps
+                    </a>
+                    <a
+                      href={wazeUrl(evento.endereco)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-white/20 bg-white/[0.06] px-3 text-[15px] font-semibold text-white transition-colors hover:border-white/45"
+                    >
+                      <ExternalIcon className="size-[18px]" />
+                      Waze
+                    </a>
+                  </div>
+                  <CopyAddress endereco={evento.endereco} />
+                </div>
               </div>
             ) : null}
           </div>

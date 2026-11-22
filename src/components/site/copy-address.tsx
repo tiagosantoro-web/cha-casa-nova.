@@ -18,7 +18,7 @@ export function CopyAddress({ endereco }: { endereco: string }) {
           // Sem acesso à área de transferência: o endereço continua visível na tela.
         }
       }}
-      className="mt-3 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 text-sm font-semibold text-white/75 underline decoration-white/30 underline-offset-4 hover:text-white"
+      className="mt-2 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 text-sm font-semibold text-white/75 underline decoration-white/30 underline-offset-4 hover:text-white"
       aria-live="polite"
     >
       {copiado ? <CheckIcon className="size-4" /> : <CopyIcon className="size-4" />}

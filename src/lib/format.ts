@@ -32,6 +32,10 @@ export function mapsUrl(address: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 }
 
+export function wazeUrl(address: string): string {
+  return `https://waze.com/ul?q=${encodeURIComponent(address)}&navigate=yes`;
+}
+
 /** Mapa do Google para colocar dentro da página (sem chave de API). */
 export function mapaEmbedUrl(address: string): string {
   return `https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`;

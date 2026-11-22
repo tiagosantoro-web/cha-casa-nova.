@@ -1,7 +1,6 @@
 import { HouseIcon } from "@/components/icons";
 import { GiftRegistry } from "@/components/site/gift-registry";
 import { Hero } from "@/components/site/hero";
-import { Location } from "@/components/site/location";
 import { ClosingInvite, Faq, HowItWorks } from "@/components/site/sections";
 import { evento } from "@/data/evento";
 import { fotosDosPresentes } from "@/lib/fotos";
@@ -11,7 +10,6 @@ export default function Home() {
     <>
       <Hero />
       <main>
-        <Location />
         <HowItWorks />
         <GiftRegistry fotos={fotosDosPresentes()} />
         <Faq />
