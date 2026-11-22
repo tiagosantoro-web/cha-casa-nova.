@@ -15,6 +15,12 @@ export const evento = {
   data: "2026-12-13" as string | null,
   // Horário de início no formato "HH:MM".
   horario: "09:00" as string | null,
+  // Programação do dia (horários "HH:MM"). Aparece no bloco Horário do convite.
+  programacao: [
+    { nome: "Brunch", inicio: "09:00", fim: "11:00" },
+    { nome: "Almoço", inicio: "13:30", fim: "15:00" },
+    { nome: "Sobremesa", inicio: "15:30", fim: "16:30" },
+  ] as { nome: string; inicio: string; fim: string }[],
   // Endereço completo (usado no botão "Como chegar").
   endereco: "Rua Ayub Abib Riskallah, 38 - Sebandilha, Mairinque - SP" as string | null,
   // Opcional: estacionamento, interfone, traje etc.

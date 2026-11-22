@@ -6,17 +6,48 @@ import { Countdown } from "./countdown";
 import { GuestGreeting } from "./guest-greeting";
 import { PresenceButton } from "./presence-button";
 
-function InfoItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | null }) {
+function InfoItem({
+  icon,
+  label,
+  value,
+  children,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string | null;
+  children?: React.ReactNode;
+}) {
   return (
     <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm">
       <span className="steel mt-0.5 grid size-9 shrink-0 place-items-center rounded-full text-ink">{icon}</span>
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">{label}</p>
         <p className={`mt-0.5 font-medium break-words first-letter:uppercase ${value ? "text-white" : "text-white/60 italic"}`}>
           {value ?? "Em breve"}
         </p>
+        {children}
       </div>
     </div>
+  );
+}
+
+/** Programação do dia: atividade à esquerda, horário à direita. */
+function Programacao() {
+  if (!evento.programacao.length) return null;
+  return (
+    <ul className="mt-3 space-y-2 border-t border-white/10 pt-3">
+      {evento.programacao.map((item) => (
+        <li key={item.nome} className="flex items-baseline justify-between gap-3 text-sm">
+          <span className="inline-flex items-center gap-2 font-semibold uppercase tracking-[0.08em] text-glow">
+            <span className="size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_8px_#b65a37]" aria-hidden />
+            {item.nome}
+          </span>
+          <span className="whitespace-nowrap tabular-nums text-white/80">
+            {formatEventTime(item.inicio)} às {formatEventTime(item.fim)}
+          </span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -33,7 +64,11 @@ const BOKEH: [number, number, number, number, number][] = [
 
 export function Hero() {
   const date = formatEventDate(evento.data);
-  const time = formatEventTime(evento.horario);
+  const ultimo = evento.programacao.at(-1);
+  const time =
+    evento.horario && ultimo
+      ? `Das ${formatEventTime(evento.horario)} às ${formatEventTime(ultimo.fim)}`
+      : formatEventTime(evento.horario);
   const [titleStart, ...titleRest] = evento.titulo.split(", ");
 
   return (
@@ -121,14 +156,16 @@ export function Hero() {
             ) : null}
           </div>
 
-          <Countdown date={evento.data} />
+          <Countdown date={evento.data} time={evento.horario} />
         </div>
 
       </div>
 
       <div className="mx-auto grid max-w-6xl gap-3 px-5 pb-14 sm:grid-cols-3 sm:px-8">
         <InfoItem icon={<CalendarIcon className="size-[18px]" />} label="Data" value={date} />
-        <InfoItem icon={<ClockIcon className="size-[18px]" />} label="Horário" value={time} />
+        <InfoItem icon={<ClockIcon className="size-[18px]" />} label="Horário" value={time}>
+          <Programacao />
+        </InfoItem>
         <InfoItem icon={<PinIcon className="size-[18px]" />} label="Endereço" value={evento.endereco} />
       </div>
       {evento.informacoesAdicionais ? (
