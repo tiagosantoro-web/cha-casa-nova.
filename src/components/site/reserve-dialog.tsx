@@ -107,12 +107,7 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
   const reserve = async () => {
     if (!gift || reserva === "reservando") return;
     setReserva("reservando");
-    const result = await reservarPresente(gift.id, {
-      presente: gift.nome,
-      convidado: name,
-      acompanhante: hasCompanion ? companion : "",
-      mensagem: note,
-    });
+    const result = await reservarPresente(gift.id);
     setReserva(result);
     if (result === "ok") onConfirmed(gift);
   };

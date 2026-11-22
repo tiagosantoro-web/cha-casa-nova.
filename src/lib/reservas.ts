@@ -36,22 +36,14 @@ export async function carregarReservas(): Promise<void> {
 
 export type ResultadoReserva = "ok" | "ja-escolhido" | "erro";
 
-/** Quem reservou: vai para a planilha do casal junto com o presente. */
-export type DadosReserva = {
-  presente: string;
-  convidado: string;
-  acompanhante: string;
-  mensagem: string;
-};
-
 /** Reserva o presente na planilha. Só uma pessoa consegue reservar cada item. */
-export async function reservarPresente(id: string, quem: DadosReserva): Promise<ResultadoReserva> {
+export async function reservarPresente(id: string): Promise<ResultadoReserva> {
   try {
     // text/plain evita a checagem prévia de CORS, que o Apps Script não responde.
     const resposta = await fetch(evento.reservasUrl, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ id, ...quem }),
+      body: JSON.stringify({ id }),
     });
     const dados = await resposta.json();
     definir(dados?.escolhidos);
