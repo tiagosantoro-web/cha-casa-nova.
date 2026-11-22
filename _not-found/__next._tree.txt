@@ -1,4 +1,4 @@
 :HL["/cha-casa-nova./_next/static/chunks/2wg3g1_ojb7ij.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"hySyh0fT1HIxR2efwJpWH","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"T2_XBbqgXfr0W1wLlOQ2P","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
