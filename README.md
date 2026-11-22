@@ -119,7 +119,7 @@ Em 22/11/2026, a pedido do casal:
 - **Entrou o ferro a vapor** Philco PFV70 preto, na Fast Shop, a R$ 177,46 (110 V). A foto também veio da Fast Shop.
 - **Viraram kits:** o difusor de aromas agora é o kit Coala com 3 unidades (R$ 56,90), e os prendedores são um kit com 24 (R$ 32,90). Os itens antigos (Salutar e Bettanin com 12) ficaram como "outra opção". Fotos novas dos anúncios da Amazon.
 - **Novo jogo de pratos:** 6 pratos rasos pretos de 27 cm (R$ 141,29), além do aparelho de jantar de 20 peças, que continua na lista. A outra opção é o Porto Brasil Neo preto matte.
-- **Piada do carro:** no fim da lista, um cartão "Chegou até aqui e não gostou de nada?" com uma BMW M2 Competition 2019 da Webmotors ([src/components/site/car-joke.tsx](src/components/site/car-joke.tsx)). Ele não entra nas reservas nem na contagem. A foto (`public/carro.jpg`) é de domínio público (CC0), do Wikimedia Commons, e o link direto é `#carro`.
+- **Piada do carro:** no fim da lista, um cartão "Chegou até aqui e não gostou de nada?" com uma BMW M2 Competition 2019 da Webmotors ([src/components/site/car-joke.tsx](src/components/site/car-joke.tsx)). Ele não entra nas reservas nem na contagem. A foto (`public/carro.jpg`) foi enviada pelo casal e o link direto é `#carro`.
 
 Alguns itens fogem da paleta porque só existem nessas cores: o kit de limpeza verde e os prendedores coloridos.
 

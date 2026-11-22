@@ -11,15 +11,15 @@ export function CarJoke() {
   return (
     <Reveal className="mt-16">
       <article id="carro" className="scroll-mt-28 night-sky relative overflow-hidden rounded-[2rem] text-white shadow-lift">
-        <div className="grid md:grid-cols-[1.1fr_1fr]">
-          <div className="relative aspect-[16/10] md:aspect-auto">
+        <div className="grid lg:grid-cols-[1.1fr_1fr]">
+          <div className="relative aspect-[16/10] lg:aspect-auto">
             {/* eslint-disable-next-line @next/next/no-img-element -- site estático, imagem em /public */}
             <img
               src={publicPath("/carro.jpg")}
-              alt="BMW M2 Competition prata estacionada numa rua de paralelepípedos"
+              alt="BMW M2 Competition vermelha estacionada"
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 size-full object-cover"
+              className="absolute inset-0 size-full object-cover object-[75%_60%]"
             />
             <span className="absolute left-3 top-3 rounded-full bg-glow px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-ink">
               Sugestão bônus
