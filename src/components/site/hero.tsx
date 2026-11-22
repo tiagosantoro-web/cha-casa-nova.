@@ -3,6 +3,7 @@ import { evento } from "@/data/evento";
 import { formatEventDate, formatEventTime, mapsUrl } from "@/lib/format";
 import { publicPath } from "@/lib/paths";
 import { Countdown } from "./countdown";
+import { GuestGreeting } from "./guest-greeting";
 import { PresenceButton } from "./presence-button";
 
 function InfoItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | null }) {
@@ -72,6 +73,8 @@ export function Hero() {
             <span className="size-2 rounded-full bg-glow shadow-[0_0_12px_#ffd9a8]" aria-hidden />
             Chá de casa nova · {evento.casal}
           </p>
+
+          <GuestGreeting />
 
           <h1
             className="animate-rise mt-6 font-display text-[2.3rem] leading-[1.06] min-[400px]:text-[2.6rem] font-medium tracking-tight text-balance sm:text-6xl lg:text-7xl"

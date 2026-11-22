@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowLeftIcon, CheckIcon, CloseIcon, ExternalIcon, HeartIcon, WhatsappIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
+import { useConvidado } from "@/lib/convidado";
 import { cleanText, formatPrice } from "@/lib/format";
 import { reservarPresente, reservasAtivas, type ResultadoReserva } from "@/lib/reservas";
 import type { Presente } from "@/lib/types";
@@ -43,12 +44,16 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
   const [sentAt, setSentAt] = useState<Date | null>(null);
   const [reserva, setReserva] = useState<Reserva>("livre");
 
+  // No convite individual (?para=Nome), o nome do convidado já vem preenchido.
+  const convidado = useConvidado();
+
   // Mantém o conteúdo visível durante o fechamento e recomeça a cada nova escolha.
   if (selection && selection !== shown) {
     setShown(selection);
     setStep("form");
     setErrors({});
     setReserva("livre");
+    if (!fullName && convidado) setFullName(convidado);
   }
 
   useEffect(() => {

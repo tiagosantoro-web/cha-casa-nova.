@@ -47,6 +47,16 @@ O endereço do script não é uma senha: ele só permite ver a lista e reservar 
 
 Em `src/data/presentes.ts`, troque `escolhido: false` por `escolhido: true` no presente e publique de novo. Funciona com ou sem a planilha.
 
+### Convites individuais
+
+Para que o convite cumprimente o convidado pelo nome, acrescente `?para=` com o nome no fim do link (espaço vira `%20`):
+
+```
+https://tiagosantoro-web.github.io/cha-casa-nova./?para=Maria%20Silva
+```
+
+O topo mostra "Olá, Maria Silva! Este convite é para você." e o nome já vem preenchido na confirmação (o convidado pode editar). Não precisa publicar de novo para cada nome: o link é montado na hora. Sem `?para=`, o convite fica igual ao geral. Código em [src/lib/convidado.ts](src/lib/convidado.ts).
+
 ### Configurar o WhatsApp
 
 Em `src/data/evento.ts`, preencha `whatsapp` com DDI 55 + DDD + número, só dígitos (ex.: `"5511987654321"`). Enquanto estiver vazio, a janela de confirmação avisa que o WhatsApp ainda está sendo configurado, e o botão "Falar com o casal" não aparece.
