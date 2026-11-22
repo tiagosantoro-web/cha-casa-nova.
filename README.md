@@ -30,16 +30,23 @@ O site deixa claro que o presente é opcional: no convite, no quadro "Presente �
 
 Uma planilha do Google guarda os presentes reservados. Quando um convidado confirma a escolha, o site reserva o item na planilha antes de abrir o WhatsApp. Se duas pessoas tentarem o mesmo item, só a primeira consegue; a segunda vê o aviso e escolhe outro. A lista de quem está com o site aberto se atualiza a cada 30 segundos e ao voltar para a aba.
 
-A planilha guarda só o id do presente e a data da reserva. Nome, acompanhante e mensagem continuam indo apenas no WhatsApp.
+Desde 22/11/2026, a planilha guarda também quem escolheu: nome do convidado, acompanhante e recado, além do presente e da data. Assim o casal sabe quem reservou cada item, mesmo que a pessoa não envie a mensagem no WhatsApp. O script cria duas abas:
 
-Ligada em 21/11/2026: planilha na conta Google do casal, script implantado como app da Web e endereço preenchido em `reservasUrl`. Para refazer em outra conta:
+- **Lista:** todos os presentes do site, com categoria, valor, situação (Livre ou Reservado, com fundo verde), quem escolheu, acompanhante e data. No fim, o total de reservados e livres. Ela se refaz a cada reserva e ao abrir a planilha; também pelo menu **Chá > Atualizar lista**.
+- **Reservas:** uma linha por reserva. Para liberar um presente, apague a linha dele aqui e use **Chá > Atualizar lista**.
+
+Se mudar a lista de presentes do site, rode `npm run planilha` para atualizar a lista dentro de [google-apps-script/reservas.gs](google-apps-script/reservas.gs), cole o arquivo de novo no Apps Script e implante uma nova versão.
+
+O endereço que está em `reservasUrl` (ligado em 21/11/2026) usa o script antigo, que guarda só o id e a data. Para passar a ver os nomes, monte a planilha nova pelos passos abaixo e troque o endereço. O site já envia os nomes, e o script antigo só os ignora.
+
+Para montar a planilha:
 
 1. Crie uma planilha em branco em [sheets.new](https://sheets.new) (ex.: "Reservas do chá").
 2. Na planilha, abra **Extensões > Apps Script**, apague o conteúdo do editor e cole o arquivo [google-apps-script/reservas.gs](google-apps-script/reservas.gs). Salve.
 3. Clique em **Implantar > Nova implantação**. Em tipo, escolha **App da Web**. Use **Executar como: eu** e **Quem pode acessar: Qualquer pessoa**. Clique em **Implantar** e autorize o acesso à planilha.
 4. Copie o **URL do app da Web** (termina em `/exec`) e cole em `reservasUrl`, no `src/data/evento.ts`. Publique o site de novo.
 
-A aba "Reservas" é criada na primeira reserva. Para **liberar um presente**, apague a linha dele nessa aba. Se mudar o código do script, use **Implantar > Gerenciar implantações > Editar > Nova versão** para manter o mesmo endereço.
+Para criar as abas na hora, sem esperar a primeira reserva: no editor do Apps Script, escolha a função `atualizarLista` e clique em **Executar**. Para **liberar um presente**, apague a linha dele na aba "Reservas". Se mudar o código do script, use **Implantar > Gerenciar implantações > Editar > Nova versão** para manter o mesmo endereço.
 
 O endereço do script não é uma senha: ele só permite ver a lista e reservar um item livre. Se alguém reservar algo indevidamente, basta apagar a linha.
 
