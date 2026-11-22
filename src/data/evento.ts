@@ -26,8 +26,8 @@ export const evento = {
   // Opcional: estacionamento, interfone, traje etc.
   informacoesAdicionais: null as string | null,
 
-  // PENDENTE: WhatsApp que recebe as confirmações. DDI 55 + DDD + número, só dígitos.
-  whatsapp: "",
+  // WhatsApp que recebe as confirmações. DDI 55 + DDD + número, só dígitos.
+  whatsapp: "5511977761747",
 
   // PENDENTE: endereço do Apps Script que bloqueia o presente assim que alguém escolhe
   // (termina em /exec; veja o README). Vazio = o casal marca "escolhido" à mão em presentes.ts.
