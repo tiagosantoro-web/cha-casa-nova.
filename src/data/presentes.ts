@@ -24,8 +24,8 @@ export const categorias: Categoria[] = [
 const CONSULTA = "2026-11-19";
 // Itens incluídos em 21/11/2026 (primeira casa e mais itens de sala), sem repetir os anteriores.
 const CONSULTA_NOVOS = "2026-11-21";
-// Ferro a vapor incluído em 22/11/2026 (preço da Fast Shop, versão 110 V).
-const CONSULTA_FERRO = "2026-11-22";
+// Ajustes de 22/11/2026: ferro a vapor (Fast Shop, 110 V), kits de difusor e prendedores e jogo de pratos pretos.
+const CONSULTA_22 = "2026-11-22";
 
 export const presentes: Presente[] = [
   // COZINHA ------------------------------------------------------------
@@ -100,6 +100,15 @@ export const presentes: Presente[] = [
     link: "https://www.amazon.com.br/Kit-Pe%C3%A7as-Aparelho-Jantar-Cer%C3%A2mica/dp/B0GX5BC5GR",
     outraLoja: "Mercado Livre (Alleanza preto acetinado)", outroLink: "https://www.mercadolivre.com.br/aparelho-de-jantar-20-pecas-preto-acetinado-alleanza/p/MLB33295945", outroPreco: null,
     imagem: "/presentes/jogo-de-pratos.jpg",
+  },
+  {
+    id: "jogo-de-pratos-pretos", categoria: "cozinha", escolhido: false,
+    nome: "Jogo de pratos rasos pretos (6 peças)", cor: "Preto",
+    descricao: "Pratos rasos de 27 cm, para o dia a dia.",
+    preco: 14129, consultadoEm: CONSULTA_22, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0FCHMP3LR",
+    outraLoja: "Amazon (Porto Brasil Neo preto matte)", outroLink: "https://www.amazon.com.br/dp/B0CV6VHYBR", outroPreco: 23339,
+    imagem: "/presentes/jogo-de-pratos-pretos.jpg",
   },
   {
     id: "jogo-de-copos", categoria: "cozinha", escolhido: false,
@@ -419,7 +428,7 @@ export const presentes: Presente[] = [
     id: "ferro-a-vapor", categoria: "lavanderia", escolhido: false,
     nome: "Ferro a vapor", cor: "Preto",
     descricao: "Philco PFV70, base cerâmica, vapor vertical e reservatório de 320 ml. Selecione a voltagem no anúncio (110 V ou 220 V).",
-    preco: 17746, consultadoEm: CONSULTA_FERRO, loja: "Fast Shop",
+    preco: 17746, consultadoEm: CONSULTA_22, loja: "Fast Shop",
     link: "https://site.fastshop.com.br/ferro-a-vapor-philco-pfv70-base-ceramic-xtreme-vapor-vertical-92-saidas-de-vapor-139415/p",
     outraLoja: null, outroLink: null, outroPreco: null,
     imagem: "/presentes/ferro-a-vapor.jpg",
@@ -472,11 +481,11 @@ export const presentes: Presente[] = [
   },
   {
     id: "prendedores", categoria: "lavanderia", escolhido: false,
-    nome: "Prendedores de roupa emborrachados (12 unidades)", cor: "Coloridos",
-    descricao: "Bettanin EsfreBom.",
-    preco: 1499, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B07WNS4CHR",
-    outraLoja: null, outroLink: null, outroPreco: null,
+    nome: "Kit de prendedores de roupa emborrachados (24 unidades)", cor: "Coloridos",
+    descricao: "Emborrachados e antideslizantes, para varal de roupas leves e pesadas.",
+    preco: 3290, consultadoEm: CONSULTA_22, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0H5DHS6VW",
+    outraLoja: "Amazon (Bettanin EsfreBom, 12 unidades)", outroLink: "https://www.amazon.com.br/dp/B07WNS4CHR", outroPreco: 1454,
     imagem: "/presentes/prendedores.jpg",
   },
 
@@ -610,11 +619,11 @@ export const presentes: Presente[] = [
   },
   {
     id: "difusor-de-aromas", categoria: "sala", escolhido: false,
-    nome: "Difusor de aromas com varetas", cor: null,
-    descricao: "Salutar, 165 ml, fragrância capim-limão.",
-    preco: 2521, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B0942BJRCP",
-    outraLoja: null, outroLink: null, outroPreco: null,
+    nome: "Kit de difusores de aromas com varetas (3 unidades)", cor: null,
+    descricao: "Coala, 100 ml cada, fragrância chá branco. Um para a sala, um para o quarto e um para o banheiro.",
+    preco: 5690, consultadoEm: CONSULTA_22, loja: "Amazon",
+    link: "https://www.amazon.com.br/dp/B0GN3ZQ34C",
+    outraLoja: "Amazon (Salutar capim-limão, 1 unidade)", outroLink: "https://www.amazon.com.br/dp/B0942BJRCP", outroPreco: 2521,
     imagem: "/presentes/difusor-de-aromas.jpg",
   },
 ];

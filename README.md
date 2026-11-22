@@ -54,7 +54,7 @@ Em `src/data/evento.ts`, preencha `whatsapp` com DDI 55 + DDD + número, só dí
 ### Fotos
 
 - Foto do casal: `public/casal.jpg` (1200×900), ligada em `foto` no `evento.ts`. No topo, ela se funde ao fundo escuro (classe `hero-photo` em `globals.css`); para trocar, substitua o arquivo mantendo o nome.
-- Presentes: as fotos ficam em `public/presentes/` e foram baixadas do anúncio principal de cada item na Amazon (conferidas uma a uma). Sem foto, o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `almofadas.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Item sem foto hoje: `almofadas` (63 dos 64 itens têm foto).
+- Presentes: as fotos ficam em `public/presentes/` e foram baixadas do anúncio principal de cada item na Amazon (conferidas uma a uma). Sem foto, o card mostra um painel neutro com "Veja as fotos na loja". Para pôr uma foto, salve o arquivo em `public/presentes/` com o `id` do item no nome (ex.: `almofadas.jpg`; aceita .jpg, .jpeg, .png e .webp) e gere o site de novo: a foto entra sozinha, sem editar código. Item sem foto hoje: `almofadas` (64 dos 65 itens têm foto).
 
 ## Rodar no computador
 
@@ -84,7 +84,7 @@ Depois de publicar, preencha `siteUrl` em `src/data/evento.ts` com o endereço f
 
 ## Lista de presentes
 
-64 itens em 6 categorias: Cozinha, Quarto, Banheiro, Lavanderia e limpeza, Utilidades e Sala e decoração.
+65 itens em 6 categorias: Cozinha, Quarto, Banheiro, Lavanderia e limpeza, Utilidades e Sala e decoração.
 
 Os critérios são:
 
@@ -117,6 +117,9 @@ Em 22/11/2026, a pedido do casal:
 - **Saíram 9 itens:** sanduicheira, travesseiros, cortina blackout, ferro de passar, tábua de passar, maleta de ferramentas, furadeira, filtro de linha e quadros decorativos. Com isso, a categoria "Ferramentas e utilidades" passou a se chamar "Utilidades" (ficaram as lâmpadas LED).
 - **Air fryer trocada:** agora é a Philco PAF65A de 6,5 L com visor, preta. O link principal é o anúncio 127 V do Mercado Livre escolhido pelo casal, sem preço, porque o Mercado Livre bloqueia a conferência automática. A outra opção é o mesmo modelo na Fast Shop, a R$ 429,90. A foto veio da Fast Shop.
 - **Entrou o ferro a vapor** Philco PFV70 preto, na Fast Shop, a R$ 177,46 (110 V). A foto também veio da Fast Shop.
+- **Viraram kits:** o difusor de aromas agora é o kit Coala com 3 unidades (R$ 56,90), e os prendedores são um kit com 24 (R$ 32,90). Os itens antigos (Salutar e Bettanin com 12) ficaram como "outra opção". Fotos novas dos anúncios da Amazon.
+- **Novo jogo de pratos:** 6 pratos rasos pretos de 27 cm (R$ 141,29), além do aparelho de jantar de 20 peças, que continua na lista. A outra opção é o Porto Brasil Neo preto matte.
+- **Piada do carro:** no fim da lista, um cartão "Chegou até aqui e não gostou de nada?" com uma BMW M2 Competition 2019 da Webmotors ([src/components/site/car-joke.tsx](src/components/site/car-joke.tsx)). Ele não entra nas reservas nem na contagem. A foto (`public/carro.jpg`) é de domínio público (CC0), do Wikimedia Commons, e o link direto é `#carro`.
 
 Alguns itens fogem da paleta porque só existem nessas cores: o kit de limpeza verde e os prendedores coloridos.
 

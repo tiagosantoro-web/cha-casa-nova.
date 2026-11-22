@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { CategoryIcon, HeartIcon } from "@/components/icons";
 import { categorias, presentes as listaDePresentes } from "@/data/presentes";
 import { useReservas } from "@/lib/reservas";
+import { CarJoke } from "./car-joke";
 import { GiftCard } from "./gift-card";
 import { Reveal } from "./reveal";
 import { PRESENCE_EVENT, PresenceButton } from "./presence-button";
@@ -193,6 +194,8 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
             );
           })}
         </div>
+
+        <CarJoke />
       </div>
 
       <ReserveDialog
