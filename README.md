@@ -131,6 +131,15 @@ Em 22/11/2026, a pedido do casal:
 - **Novo jogo de pratos:** 6 pratos rasos pretos de 27 cm (R$ 141,29), além do aparelho de jantar de 20 peças, que continua na lista. A outra opção é o Porto Brasil Neo preto matte.
 - **Piada do carro:** no fim da lista, um cartão "Chegou até aqui e não gostou de nada?" com uma BMW M2 Competition 2019 da Webmotors ([src/components/site/car-joke.tsx](src/components/site/car-joke.tsx)). Ele não entra nas reservas nem na contagem. A foto (`public/carro.jpg`) foi enviada pelo casal e o link direto é `#carro`.
 
+Validação de 22/11/2026, no site publicado:
+
+- Os 86 links da Amazon foram abertos de novo.
+- **Três itens estavam esgotados e foram trocados:**
+  - **Cafeteira:** a Elgin saiu, e a Electrolux ECM10 preto e inox (R$ 104,41), que era a outra opção, virou a sugestão principal.
+  - **Jogo de cama:** agora é o percal 400 fios cinza, 4 peças, por R$ 71,19.
+  - **Cesto de roupas:** agora é o rattan preto com tampa, por R$ 50,47.
+- **Preços atualizados** (variação de 15% ou mais): jogo de panelas (R$ 356,24; Tramontina R$ 307,79) e tapete da sala (R$ 76,49).
+
 Alguns itens fogem da paleta porque só existem nessas cores: o kit de limpeza verde e os prendedores coloridos.
 
 Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência na hora.
@@ -138,7 +147,7 @@ Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência n
 - Todos os links principais são da Amazon e foram abertos em 19/11/2026 para conferir produto, cor, estoque e preço. Preços mudam com frequência.
 - Mercado Livre e Magazine Luiza bloqueiam a conferência automática (tela de verificação ou erro 403). Links do Mercado Livre ficaram só como "outra opção", sem preço. Links da Magazine Luiza e do Carrefour (um deles quebrado) foram removidos.
 - Eletroportáteis: confira a voltagem (127 V ou 220 V).
-- Itens com poucas unidades em estoque na consulta trazem esse aviso na descrição: canecas, porta-temperos, varal, cesto de roupas, escorredores de massa e mesa de centro.
+- Itens com poucas unidades em estoque na consulta trazem esse aviso na descrição: cafeteira, canecas, porta-temperos, varal, escorredores de massa e mesa de centro.
 - Micro-ondas: a versão 110 V estava sem oferta direta da Amazon, então o link principal é a 220 V, e a 110 V fica como outra opção.
 - O kit de banheiro de 6 peças já inclui uma lixeira pequena; a lixeira com pedal continua na lista como presente separado.
 
