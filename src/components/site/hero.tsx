@@ -166,7 +166,13 @@ export function Hero() {
         <InfoItem icon={<ClockIcon className="size-[18px]" />} label="Horário" value={time}>
           <Programacao />
         </InfoItem>
-        <InfoItem icon={<PinIcon className="size-[18px]" />} label="Endereço" value={evento.endereco} />
+        <InfoItem icon={<PinIcon className="size-[18px]" />} label="Endereço" value={evento.endereco}>
+          {evento.endereco ? (
+            <a href="#local" className="mt-2 inline-flex min-h-9 items-center gap-1.5 text-sm font-semibold text-glow underline decoration-glow/40 underline-offset-4 hover:decoration-glow">
+              Ver no mapa
+            </a>
+          ) : null}
+        </InfoItem>
       </div>
       {evento.informacoesAdicionais ? (
         <p className="mx-auto -mt-6 max-w-6xl whitespace-pre-line px-5 pb-12 text-white/70 sm:px-8">{evento.informacoesAdicionais}</p>

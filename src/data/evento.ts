@@ -29,6 +29,15 @@ export const evento = {
   // WhatsApp que recebe as confirmações. DDI 55 + DDD + número, só dígitos.
   whatsapp: "5511977761747",
 
+  // Pix para o convidado em dúvida: gera o "copia e cola" com o valor estimado do presente.
+  // Chave CPF só com dígitos. Nome e cidade aparecem no app do banco (sem acentos, até 25 e 15 letras).
+  // Vazio em `chave` = a opção de Pix some do site.
+  pix: {
+    chave: "50333328809",
+    nome: "Tiago Santoro",
+    cidade: "Mairinque",
+  },
+
   // PENDENTE: endereço do Apps Script que bloqueia o presente assim que alguém escolhe
   // (termina em /exec; veja o README). Vazio = o casal marca "escolhido" à mão em presentes.ts.
   reservasUrl: "https://script.google.com/macros/s/AKfycbyrDETthGcNe2OwZa-6NStVpDj9A3NugBXFKGkRcB7EASsdVr_AYHqQnB60m6rSp1CQ/exec",

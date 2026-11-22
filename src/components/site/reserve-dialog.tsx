@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { ArrowLeftIcon, CheckIcon, CloseIcon, ExternalIcon, HeartIcon, WhatsappIcon } from "@/components/icons";
+import { ArrowLeftIcon, CheckIcon, CloseIcon, ExternalIcon, HeartIcon, PixIcon, WhatsappIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
 import { useConvidado } from "@/lib/convidado";
 import { cleanText, formatPrice } from "@/lib/format";
+import { pixValido } from "@/lib/pix";
 import { reservarPresente, reservasAtivas, type ResultadoReserva } from "@/lib/reservas";
 import type { Presente } from "@/lib/types";
 import { linkWhatsapp, montarMensagem, whatsappValido } from "@/lib/whatsapp";
+import { PixBox } from "./pix-box";
 
 type Step = "form" | "review" | "done";
 type Reserva = "livre" | "reservando" | ResultadoReserva;
@@ -17,18 +19,22 @@ export type Selecao = Presente | "presenca";
 
 type Props = {
   selection: Selecao | null;
+  /** true = abriu pelo "Em dúvida? Presentear com Pix": já começa com o Pix escolhido. */
+  pixInicial?: boolean;
   /** true = o visitante já reservou este presente neste aparelho. */
   alreadyMine: boolean;
   onClose: () => void;
   onConfirmed: (gift: Presente) => void;
 };
 
+const pixAtivo = pixValido(evento.pix.chave);
+
 const inputClass =
   "w-full rounded-2xl border border-line bg-paper px-4 py-3.5 text-base text-ink placeholder:text-muted/70 focus:border-ink focus:bg-card focus:outline-none aria-[invalid=true]:border-danger";
 
 const coupleLabel = evento.casal.replace(/\s*&\s*/, " e ");
 
-export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: Props) {
+export function ReserveDialog({ selection, pixInicial = false, alreadyMine, onClose, onConfirmed }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const companionRef = useRef<HTMLInputElement>(null);
@@ -43,6 +49,7 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
   const [shown, setShown] = useState<Selecao | null>(selection);
   const [sentAt, setSentAt] = useState<Date | null>(null);
   const [reserva, setReserva] = useState<Reserva>("livre");
+  const [viaPix, setViaPix] = useState(false);
 
   // No convite individual (?para=Nome), o nome do convidado já vem preenchido.
   const convidado = useConvidado();
@@ -53,6 +60,7 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
     setStep("form");
     setErrors({});
     setReserva("livre");
+    setViaPix(pixInicial);
     if (!fullName && convidado) setFullName(convidado);
   }
 
@@ -67,6 +75,7 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
   }, [selection]);
 
   const gift = shown && shown !== "presenca" ? shown : null;
+  const pix = Boolean(gift) && pixAtivo && viaPix;
   const name = cleanText(fullName, 120);
   const companion = cleanText(companionName, 120);
   const note = cleanText(message, 500);
@@ -94,6 +103,7 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
             acompanhante: companion,
             presente: gift?.nome ?? null,
             preco: gift?.preco ?? null,
+            viaPix: pix,
             mensagem: note,
             data: sentAt ?? new Date(),
           }),
@@ -281,6 +291,34 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
                     <p>Você está escolhendo presentear {coupleLabel} com:</p>
                     <p className="mt-3 font-display text-xl font-medium">{gift.nome}</p>
                     {price ? <p className="mt-1 text-sm text-muted">Valor de referência: {price}</p> : null}
+                    {pixAtivo ? (
+                      <fieldset className="mt-4">
+                        <legend className="mb-1.5 text-sm font-semibold">Como você prefere presentear?</legend>
+                        <div className="grid grid-cols-2 gap-2">
+                          {[
+                            { value: false, label: "Comprar o presente" },
+                            { value: true, label: "Enviar o valor em Pix" },
+                          ].map((option) => (
+                            <label
+                              key={option.label}
+                              className={`flex min-h-12 cursor-pointer items-center justify-center gap-1.5 rounded-2xl border px-2 text-center text-sm font-semibold transition-colors has-focus-visible:outline-2 has-focus-visible:outline-accent ${
+                                viaPix === option.value ? "border-ink bg-ink text-paper" : "border-line bg-card hover:border-ink/40"
+                              }`}
+                            >
+                              <input
+                                type="radio"
+                                name="formaPresente"
+                                className="sr-only"
+                                checked={viaPix === option.value}
+                                onChange={() => setViaPix(option.value)}
+                              />
+                              {option.value ? <PixIcon className="size-4 shrink-0" /> : null}
+                              {option.label}
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
+                    ) : null}
                   </>
                 ) : (
                   <p>Você está confirmando presença no chá de casa nova de {coupleLabel}.</p>
@@ -296,6 +334,8 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
                   </div>
                 </dl>
               </div>
+
+              {gift && pix ? <PixBox gift={gift} /> : null}
 
               {waUrl && reserva === "ok" ? (
                 <p className="mt-4 flex items-start gap-2 rounded-2xl bg-ok-soft px-4 py-3 text-sm leading-relaxed text-ok" role="status">
@@ -391,12 +431,13 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
                   ) : (
                     " de presença"
                   )}
-                  . Não esqueça de <strong>enviar a mensagem</strong> para o casal receber.
+                  {pix ? " em Pix" : ""}. Não esqueça de <strong>enviar a mensagem</strong> para o casal receber.
                 </p>
               </div>
+              {gift && pix ? <PixBox gift={gift} /> : null}
               <p className="mt-4 text-sm leading-relaxed text-muted">
                 O WhatsApp não abriu? Use o botão abaixo.
-                {gift ? " O link da loja é só uma sugestão: você pode comprar onde preferir." : ""}
+                {gift && !pix ? " O link da loja é só uma sugestão: você pode comprar onde preferir." : ""}
               </p>
               <div className="mt-5 grid gap-2">
                 {waUrl ? (
@@ -410,7 +451,7 @@ export function ReserveDialog({ selection, alreadyMine, onClose, onConfirmed }: 
                     Abrir o WhatsApp de novo
                   </a>
                 ) : null}
-                {gift?.link ? (
+                {gift?.link && !pix ? (
                   <a
                     href={gift.link}
                     target="_blank"

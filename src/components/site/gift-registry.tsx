@@ -67,12 +67,17 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
   const [active, setActive] = useState<string>("todos");
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [selected, setSelected] = useState<Selecao | null>(null);
+  // true = o convidado abriu pelo "Em dúvida? Presentear com Pix".
+  const [pixInicial, setPixInicial] = useState(false);
   const rawChoices = useSyncExternalStore(subscribeChoices, readRawChoices, () => "[]");
   const myChoices = useMemo(() => parseChoices(rawChoices), [rawChoices]);
 
   // Botões "Confirmar presença" de outras seções abrem a mesma janela, sem presente.
   useEffect(() => {
-    const openPresence = () => setSelected("presenca");
+    const openPresence = () => {
+      setPixInicial(false);
+      setSelected("presenca");
+    };
     window.addEventListener(PRESENCE_EVENT, openPresence);
     return () => window.removeEventListener(PRESENCE_EVENT, openPresence);
   }, []);
@@ -180,7 +185,14 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
                           gift={gift}
                           categoryName={categoryName.get(gift.categoria) ?? ""}
                           chosenByMe={myChoices.includes(gift.id)}
-                          onChoose={setSelected}
+                          onChoose={(escolhido) => {
+                            setPixInicial(false);
+                            setSelected(escolhido);
+                          }}
+                          onChoosePix={(escolhido) => {
+                            setPixInicial(true);
+                            setSelected(escolhido);
+                          }}
                         />
                       </Reveal>
                     ))}
@@ -200,6 +212,7 @@ export function GiftRegistry({ fotos }: { fotos: Record<string, string> }) {
 
       <ReserveDialog
         selection={selected}
+        pixInicial={pixInicial}
         alreadyMine={selected !== null && selected !== "presenca" && myChoices.includes(selected.id)}
         onClose={() => setSelected(null)}
         onConfirmed={(gift) => saveChoice(gift.id)}

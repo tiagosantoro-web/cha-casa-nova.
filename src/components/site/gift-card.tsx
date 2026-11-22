@@ -1,7 +1,9 @@
 "use client";
 
-import { CheckIcon, ExternalIcon, HeartIcon } from "@/components/icons";
+import { CheckIcon, ExternalIcon, HeartIcon, PixIcon } from "@/components/icons";
+import { evento } from "@/data/evento";
 import { formatPrice, formatShortDate } from "@/lib/format";
+import { pixValido } from "@/lib/pix";
 import type { Presente } from "@/lib/types";
 import { GiftImage } from "./gift-image";
 
@@ -30,9 +32,12 @@ type Props = {
   categoryName: string;
   chosenByMe: boolean;
   onChoose: (gift: Presente) => void;
+  onChoosePix: (gift: Presente) => void;
 };
 
-export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
+const pixAtivo = pixValido(evento.pix.chave);
+
+export function GiftCard({ gift, categoryName, chosenByMe, onChoose, onChoosePix }: Props) {
   // O presente que o próprio visitante reservou continua com o botão para reenviar a confirmação.
   const reserved = gift.escolhido && !chosenByMe;
   // Escolhido por alguém (inclusive pelo próprio visitante): o cartão inteiro fica cinza.
@@ -113,6 +118,16 @@ export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
                 {chosenByMe ? "Enviar confirmação de novo" : "Escolher este presente"}
               </button>
             )}
+            {pixAtivo && !taken ? (
+              <button
+                type="button"
+                onClick={() => onChoosePix(gift)}
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-4 text-sm font-semibold text-accent-ink transition-colors hover:border-accent"
+              >
+                <PixIcon className="size-4" />
+                Em dúvida? Presentear com Pix
+              </button>
+            ) : null}
             {gift.link ? (
               <div className="flex flex-col items-center text-sm">
                 <a

@@ -8,6 +8,8 @@ type Confirmacao = {
   /** null = só confirmação de presença, sem presente. */
   presente: string | null;
   preco: number | null;
+  /** true = o convidado vai dar o valor do presente em Pix. */
+  viaPix?: boolean;
   mensagem: string;
   data: Date;
 };
@@ -36,7 +38,9 @@ export function montarMensagem(dados: Confirmacao): string {
       "",
       `🎁 *Presente escolhido:* ${dados.presente}`,
       "",
-      `💰 *Preço sugerido:* ${formatPrice(dados.preco) ?? "a confirmar"}`,
+      dados.viaPix
+        ? `💸 *Forma:* Pix de ${formatPrice(dados.preco) ?? "valor a combinar"} (no lugar do presente)`
+        : `💰 *Preço sugerido:* ${formatPrice(dados.preco) ?? "a confirmar"}`,
     );
   } else {
     linhas.push("", "🎁 *Presente:* só confirmando presença");

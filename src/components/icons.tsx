@@ -99,6 +99,25 @@ export function WhatsappIcon(props: IconProps) {
   );
 }
 
+/** Losango simples que lembra o Pix (não é o logotipo oficial). */
+export function PixIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...base} {...props}>
+      <path d="M12 3.5 20.5 12 12 20.5 3.5 12Z" />
+      <path d="m8 12 4-4 4 4-4 4Z" />
+    </svg>
+  );
+}
+
+export function CopyIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...base} {...props}>
+      <rect x="8.5" y="8.5" width="11" height="11" rx="2.5" />
+      <path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5" />
+    </svg>
+  );
+}
+
 export function ArrowLeftIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" {...base} {...props}>

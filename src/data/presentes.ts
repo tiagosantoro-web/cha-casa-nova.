@@ -50,8 +50,8 @@ export const presentes: Presente[] = [
   {
     id: "air-fryer", categoria: "cozinha", escolhido: false,
     nome: "Air fryer 6,5 litros com visor", cor: "Preto",
-    descricao: "Philco PAF65A Redstone, 1700 W, painel digital e visor de vidro. O link principal é a versão 127 V.",
-    preco: null, consultadoEm: null, loja: "Mercado Livre",
+    descricao: "Philco PAF65A Redstone, 1700 W, painel digital e visor de vidro. O link principal é a versão 127 V. Valor estimado de mercado (de R$ 359 a R$ 470 nas lojas).",
+    preco: 39900, consultadoEm: CONSULTA_22, loja: "Mercado Livre",
     link: "https://www.mercadolivre.com.br/air-fryer-philco-65l-visor-glass-e-redstone-1700w-paf65a-preto-127v/p/MLB52052995?pdp_filters=item_id%3AMLB7614074974",
     outraLoja: "Fast Shop (mesmo modelo, 110 V ou 220 V)", outroLink: "https://site.fastshop.com.br/air-fryer-philco-65l-visor-glass-e-redstone-1700w-paf65a-140993/p", outroPreco: 42990,
     imagem: "/presentes/air-fryer.jpg",
@@ -249,8 +249,8 @@ export const presentes: Presente[] = [
   {
     id: "garrafa-termica", categoria: "cozinha", escolhido: false,
     nome: "Garrafa térmica 1 litro", cor: "Preta",
-    descricao: "Cabo de madeira e bico de servir, para café quente ou água gelada. Na outra opção, Termolar Magic Pump preta.",
-    preco: null, consultadoEm: null, loja: "Mercado Livre",
+    descricao: "Cabo de madeira e bico de servir, para café quente ou água gelada. Valor estimado de mercado (de R$ 41 a R$ 68). Na outra opção, Termolar Magic Pump preta.",
+    preco: 4990, consultadoEm: CONSULTA_22, loja: "Mercado Livre",
     link: "https://www.mercadolivre.com.br/garrafa-termica-1-litro-cabo-madeira-cafe-quente-agua-gelada-cor-preto/p/MLB36216956?pdp_filters=item_id%3AMLB4127649041",
     outraLoja: "Amazon (Termolar Magic Pump 1 L)", outroLink: "https://www.amazon.com.br/dp/B079ZH2RXK", outroPreco: 5182,
     imagem: "/presentes/garrafa-termica.jpg",
