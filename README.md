@@ -168,9 +168,9 @@ Uma escada de 3 degraus ficou de fora, porque a Amazon bloqueou a conferência n
 
 ## Pendências do casal
 
-1. Data e horário.
-2. Endereço completo.
-3. Número de WhatsApp que receberá as confirmações.
+1. Número de WhatsApp que receberá as confirmações.
+
+Data, horário e endereço foram preenchidos em 22/11/2026: domingo, 13/12/2026, às 9h, na Rua Ayub Abib Riskallah, 38, Sebandilha, Mairinque (SP).
 
 ## Publicação atual
 

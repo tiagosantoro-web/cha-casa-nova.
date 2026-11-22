@@ -11,12 +11,12 @@ export const evento = {
     "Sua presença é o que mais importa. Se quiser nos presentear, separamos algumas ideias para o nosso cantinho, sem nenhum compromisso.",
   ],
 
-  // PENDENTE: data no formato "AAAA-MM-DD". Ex.: "2026-12-12"
-  data: null as string | null,
-  // PENDENTE: horário no formato "HH:MM". Ex.: "15:00"
-  horario: null as string | null,
-  // PENDENTE: endereço completo (usado no botão "Como chegar").
-  endereco: null as string | null,
+  // Data no formato "AAAA-MM-DD".
+  data: "2026-12-13" as string | null,
+  // Horário de início no formato "HH:MM".
+  horario: "09:00" as string | null,
+  // Endereço completo (usado no botão "Como chegar").
+  endereco: "Rua Ayub Abib Riskallah, 38 - Sebandilha, Mairinque - SP" as string | null,
   // Opcional: estacionamento, interfone, traje etc.
   informacoesAdicionais: null as string | null,
 
