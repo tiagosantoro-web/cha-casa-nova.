@@ -17,13 +17,15 @@ export const categorias: Categoria[] = [
   { slug: "quarto", nome: "Quarto" },
   { slug: "banheiro", nome: "Banheiro" },
   { slug: "lavanderia", nome: "Lavanderia e limpeza" },
-  { slug: "utilidades", nome: "Ferramentas e utilidades" },
+  { slug: "utilidades", nome: "Utilidades" },
   { slug: "sala", nome: "Sala e decoração" },
 ];
 
 const CONSULTA = "2026-11-19";
 // Itens incluídos em 21/11/2026 (primeira casa e mais itens de sala), sem repetir os anteriores.
 const CONSULTA_NOVOS = "2026-11-21";
+// Ferro a vapor incluído em 22/11/2026 (preço da Fast Shop, versão 110 V).
+const CONSULTA_FERRO = "2026-11-22";
 
 export const presentes: Presente[] = [
   // COZINHA ------------------------------------------------------------
@@ -47,11 +49,11 @@ export const presentes: Presente[] = [
   },
   {
     id: "air-fryer", categoria: "cozinha", escolhido: false,
-    nome: "Air fryer 4 litros", cor: "Preto e inox",
-    descricao: "Mondial AFN-40-BI, 1500 W, versão 110 V. A 220 V está na outra opção.",
-    preco: 26305, consultadoEm: CONSULTA, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B093MK3Z12",
-    outraLoja: "Amazon (mesmo modelo, 220 V)", outroLink: "https://www.amazon.com.br/dp/B093M9941C", outroPreco: 26305,
+    nome: "Air fryer 6,5 litros com visor", cor: "Preto",
+    descricao: "Philco PAF65A Redstone, 1700 W, painel digital e visor de vidro. O link principal é a versão 127 V.",
+    preco: null, consultadoEm: null, loja: "Mercado Livre",
+    link: "https://www.mercadolivre.com.br/air-fryer-philco-65l-visor-glass-e-redstone-1700w-paf65a-preto-127v/p/MLB52052995?pdp_filters=item_id%3AMLB7614074974",
+    outraLoja: "Fast Shop (mesmo modelo, 110 V ou 220 V)", outroLink: "https://site.fastshop.com.br/air-fryer-philco-65l-visor-glass-e-redstone-1700w-paf65a-140993/p", outroPreco: 42990,
     imagem: "/presentes/air-fryer.jpg",
   },
   {
@@ -71,15 +73,6 @@ export const presentes: Presente[] = [
     link: "https://www.amazon.com.br/dp/B07WDCZWFW",
     outraLoja: "Amazon (Britânia BBP760P, 220 V)", outroLink: "https://www.amazon.com.br/dp/B08K1NNGVS", outroPreco: 24990,
     imagem: "/presentes/batedeira.jpg",
-  },
-  {
-    id: "sanduicheira", categoria: "cozinha", escolhido: false,
-    nome: "Sanduicheira grill", cor: "Preta",
-    descricao: "Cadence Toast & Grill SAN260, 750 W, versão 110 V.",
-    preco: 6005, consultadoEm: CONSULTA, loja: "Amazon",
-    link: "https://www.amazon.com.br/Cadence-SANDUICHEIRA-MINIGRIL-SAN260-PRETA/dp/B09HW53ZVV",
-    outraLoja: "Amazon (mesmo modelo, 220 V)", outroLink: "https://www.amazon.com.br/Sanduicheira-El%C3%A9trica-Toast-Grill-SAN260-220/dp/B09HW1W3YD", outroPreco: 6299,
-    imagem: "/presentes/sanduicheira.jpg",
   },
   {
     id: "cafeteira", categoria: "cozinha", escolhido: false,
@@ -301,15 +294,6 @@ export const presentes: Presente[] = [
     imagem: "/presentes/jogo-de-cama.jpg",
   },
   {
-    id: "travesseiros", categoria: "quarto", escolhido: false,
-    nome: "Travesseiros (kit com 2)", cor: "Branco",
-    descricao: "50 x 70 cm, fibra siliconada, antiácaro e lavável.",
-    preco: 5195, consultadoEm: CONSULTA, loja: "Amazon",
-    link: "https://www.amazon.com.br/Travesseiro-Lavavel-Anti%C3%A1caro-Fibra-Siliconada/dp/B0DTJCTNB7",
-    outraLoja: "Amazon (antiácaro e antimofo)", outroLink: "https://www.amazon.com.br/Travesseiros-Antial%C3%A9rgico-Lav%C3%A1vel-50x70cm-Siliconada/dp/B0D7SZK44V", outroPreco: 5990,
-    imagem: "/presentes/travesseiros.jpg",
-  },
-  {
     id: "edredom", categoria: "quarto", escolhido: false,
     nome: "Edredom casal queen com porta-travesseiros (3 peças)", cor: "Preto",
     descricao: "Edredom e 2 porta-travesseiros. Confira o tamanho da cama.",
@@ -354,15 +338,6 @@ export const presentes: Presente[] = [
     link: "https://www.amazon.com.br/dp/B09G9KGJNS",
     outraLoja: null, outroLink: null, outroPreco: null,
     imagem: "/presentes/protetor-de-colchao.jpg",
-  },
-  {
-    id: "cortina-blackout", categoria: "quarto", escolhido: false,
-    nome: "Cortina blackout 2,80 x 1,60 m", cor: "Preta",
-    descricao: "Bloqueia a luz. Confira a medida da janela.",
-    preco: 5202, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B08HHD3F5H",
-    outraLoja: null, outroLink: null, outroPreco: null,
-    imagem: "/presentes/cortina-blackout.jpg",
   },
   {
     id: "sapateira", categoria: "quarto", escolhido: false,
@@ -441,22 +416,13 @@ export const presentes: Presente[] = [
     imagem: "/presentes/varal.jpg",
   },
   {
-    id: "ferro-de-passar", categoria: "lavanderia", escolhido: false,
-    nome: "Ferro de passar", cor: "Preto e cromado",
-    descricao: "Black+Decker VFA, 127 V.",
-    preco: 11490, consultadoEm: CONSULTA, loja: "Amazon",
-    link: "https://www.amazon.com.br/Ferro-Met%C3%A1lico-Black-Decker-Preto/dp/B07613Y23B",
+    id: "ferro-a-vapor", categoria: "lavanderia", escolhido: false,
+    nome: "Ferro a vapor", cor: "Preto",
+    descricao: "Philco PFV70, base cerâmica, vapor vertical e reservatório de 320 ml. Selecione a voltagem no anúncio (110 V ou 220 V).",
+    preco: 17746, consultadoEm: CONSULTA_FERRO, loja: "Fast Shop",
+    link: "https://site.fastshop.com.br/ferro-a-vapor-philco-pfv70-base-ceramic-xtreme-vapor-vertical-92-saidas-de-vapor-139415/p",
     outraLoja: null, outroLink: null, outroPreco: null,
-    imagem: "/presentes/ferro-de-passar.jpg",
-  },
-  {
-    id: "tabua-de-passar", categoria: "lavanderia", escolhido: false,
-    nome: "Tábua de passar com forro extra (kit)", cor: "Prata",
-    descricao: "Mesa de passar Someway extra forte com 1 forro metalizado a mais.",
-    preco: 14399, consultadoEm: CONSULTA, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B07C64FL55",
-    outraLoja: "Amazon (tábua dobrável, só a tábua)", outroLink: "https://www.amazon.com.br/dp/B0GWFMY9T4", outroPreco: 8694,
-    imagem: "/presentes/tabua-de-passar.jpg",
+    imagem: "/presentes/ferro-a-vapor.jpg",
   },
   {
     id: "cesto-de-roupas", categoria: "lavanderia", escolhido: false,
@@ -516,33 +482,6 @@ export const presentes: Presente[] = [
 
   // FERRAMENTAS E UTILIDADES -----------------------------------------
   {
-    id: "maleta-ferramentas", categoria: "utilidades", escolhido: false,
-    nome: "Maleta de ferramentas (kit com 129 peças)", cor: "Preta e laranja",
-    descricao: "Sparta: chaves, alicates, martelo, trena e bits, tudo na maleta.",
-    preco: 6716, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B076N2S8FV",
-    outraLoja: null, outroLink: null, outroPreco: null,
-    imagem: "/presentes/maleta-ferramentas.jpg",
-  },
-  {
-    id: "furadeira", categoria: "utilidades", escolhido: false,
-    nome: "Furadeira de impacto com acessórios", cor: "Laranja e preta",
-    descricao: "BLACK+DECKER BED713650, 650 W, mandril de 13 mm, versão 110 V.",
-    preco: 17990, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B0FHY773C4",
-    outraLoja: null, outroLink: null, outroPreco: null,
-    imagem: "/presentes/furadeira.jpg",
-  },
-  {
-    id: "filtro-de-linha", categoria: "utilidades", escolhido: false,
-    nome: "Filtro de linha 6 tomadas", cor: "Preto",
-    descricao: "Fortrek, tomadas no padrão 2P+T.",
-    preco: 2537, consultadoEm: CONSULTA_NOVOS, loja: "Amazon",
-    link: "https://www.amazon.com.br/dp/B075BLXX61",
-    outraLoja: null, outroLink: null, outroPreco: null,
-    imagem: "/presentes/filtro-de-linha.jpg",
-  },
-  {
     id: "lampadas-led", categoria: "utilidades", escolhido: false,
     nome: "Lâmpadas LED 9 W (kit com 10)", cor: "Luz branca fria",
     descricao: "Elgin, bivolt, base E27.",
@@ -587,15 +526,6 @@ export const presentes: Presente[] = [
     link: "https://www.amazon.com.br/dp/B0FRFR6X83",
     outraLoja: "Amazon (Decolab, cinza stone)", outroLink: "https://www.amazon.com.br/dp/B0CN9NNK9W", outroPreco: 4169,
     imagem: "/presentes/manta-sofa.jpg",
-  },
-  {
-    id: "quadros", categoria: "sala", escolhido: false,
-    nome: "Quadros decorativos (kit com 3)", cor: "Preto e branco",
-    descricao: "Moldura preta, tema Manhattan.",
-    preco: 16990, consultadoEm: CONSULTA, loja: "Amazon",
-    link: "https://www.amazon.com.br/Quadros-Decorativos-Grandes-Branco-Manhattan/dp/B096CNJMJN",
-    outraLoja: null, outroLink: null, outroPreco: null,
-    imagem: "/presentes/quadros.jpg",
   },
   {
     id: "cesto-organizador", categoria: "sala", escolhido: false,
