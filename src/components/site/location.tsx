@@ -1,6 +1,6 @@
 import { CalendarIcon, ClockIcon, ExternalIcon, PinIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
-import { formatEventDate, formatEventTime, mapsUrl } from "@/lib/format";
+import { formatEventDate, formatEventTime, mapaEmbedUrl, mapsUrl } from "@/lib/format";
 import { CopyAddress } from "./copy-address";
 import { Reveal } from "./reveal";
 
@@ -12,7 +12,7 @@ export function Location() {
   const date = formatEventDate(evento.data);
   const inicio = formatEventTime(evento.horario);
   const fim = formatEventTime(evento.programacao.at(-1)?.fim ?? null);
-  const mapa = `https://maps.google.com/maps?q=${encodeURIComponent(endereco)}&z=16&output=embed`;
+  const mapa = mapaEmbedUrl(endereco);
   const waze = `https://waze.com/ul?q=${encodeURIComponent(endereco)}&navigate=yes`;
 
   return (

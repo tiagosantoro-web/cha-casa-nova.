@@ -1,5 +1,6 @@
-import { CheckIcon, GiftIcon, HeartIcon, WhatsappIcon } from "@/components/icons";
+import { CheckIcon, GiftIcon, HeartIcon, PinIcon, WhatsappIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
+import { mapaEmbedUrl, mapsUrl } from "@/lib/format";
 import { reservasAtivas } from "@/lib/reservas-ativas";
 import { linkWhatsapp, whatsappValido } from "@/lib/whatsapp";
 import { PresenceButton } from "./presence-button";
@@ -139,17 +140,46 @@ export function ClosingInvite() {
     <section className="bg-card pb-16 sm:pb-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <div className="night-sky relative overflow-hidden rounded-[2rem] px-6 py-12 text-center text-white sm:px-12 sm:py-16">
-            <HeartIcon className="mx-auto size-8 text-glow" />
-            <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl leading-tight font-medium text-balance sm:text-5xl">
-              O mais importante é <em className="shine-text pr-[0.12em] font-normal">celebrar juntos</em>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/75">
-              Vai ser uma alegria receber você na nossa casa nova. Confirme sua presença para a gente se organizar.
-            </p>
-            <PresenceButton className="mt-8 inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-accent px-8 text-base font-semibold text-white transition-transform hover:-translate-y-0.5">
-              Confirmar presença
-            </PresenceButton>
+          <div
+            id="confirmar"
+            className={`night-sky relative grid scroll-mt-6 overflow-hidden rounded-[2rem] text-white shadow-lift ${evento.endereco ? "lg:grid-cols-[1.1fr_1fr]" : ""}`}
+          >
+            <div className={`px-6 py-12 text-center sm:px-12 sm:py-16 ${evento.endereco ? "lg:text-left" : ""}`}>
+              <HeartIcon className={`mx-auto size-8 text-glow ${evento.endereco ? "lg:mx-0" : ""}`} />
+              <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl leading-tight font-medium text-balance sm:text-5xl">
+                O mais importante é <em className="shine-text pr-[0.12em] font-normal">celebrar juntos</em>
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/75">
+                Vai ser uma alegria receber você na nossa casa nova. Confirme sua presença para a gente se organizar.
+              </p>
+              <PresenceButton className="btn-shine mt-8 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-accent px-8 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgb(182_90_55/0.8)] transition-transform hover:-translate-y-0.5 sm:w-auto">
+                <HeartIcon className="size-5" />
+                Confirmar presença
+              </PresenceButton>
+            </div>
+            {evento.endereco ? (
+              <div className="flex flex-col border-t border-white/10 lg:border-t-0 lg:border-l">
+                <div className="relative min-h-[260px] flex-1">
+                  <iframe
+                    title={`Mapa do local: ${evento.endereco}`}
+                    src={mapaEmbedUrl(evento.endereco)}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 size-full border-0"
+                  />
+                </div>
+                <a
+                  href={mapsUrl(evento.endereco)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-14 items-center gap-3 px-6 py-4 text-left text-[15px] font-medium text-white/85 transition-colors hover:bg-white/[0.06] hover:text-white"
+                >
+                  <PinIcon className="size-5 shrink-0 text-glow" />
+                  <span className="min-w-0 flex-1">{evento.endereco}</span>
+                  <span className="shrink-0 text-sm font-semibold text-glow underline underline-offset-4">Abrir no mapa</span>
+                </a>
+              </div>
+            ) : null}
           </div>
         </Reveal>
       </div>

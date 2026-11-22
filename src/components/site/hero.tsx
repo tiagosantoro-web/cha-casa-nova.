@@ -1,10 +1,9 @@
-import { CalendarIcon, ClockIcon, GiftIcon, HeartIcon, PinIcon } from "@/components/icons";
+import { CalendarIcon, ClockIcon, GiftIcon, PinIcon } from "@/components/icons";
 import { evento } from "@/data/evento";
-import { formatEventDate, formatEventTime, mapsUrl } from "@/lib/format";
+import { formatEventDate, formatEventTime } from "@/lib/format";
 import { publicPath } from "@/lib/paths";
 import { Countdown } from "./countdown";
 import { GuestGreeting } from "./guest-greeting";
-import { PresenceButton } from "./presence-button";
 
 function InfoItem({
   icon,
@@ -132,23 +131,17 @@ export function Hero() {
           </div>
 
           <div className="animate-rise mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={{ animationDelay: "240ms" }}>
-            <PresenceButton className="btn-shine inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-accent px-7 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgb(182_90_55/0.8)] transition-transform hover:-translate-y-0.5 active:translate-y-0">
-              <HeartIcon className="size-5" />
-              Confirmar presença
-            </PresenceButton>
             <a
               href="#presentes"
-              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-7 text-base font-semibold text-white backdrop-blur transition-colors hover:border-white/45"
+              className="btn-shine inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-accent px-7 text-base font-semibold text-white shadow-[0_14px_30px_-12px_rgb(182_90_55/0.8)] transition-transform hover:-translate-y-0.5 active:translate-y-0"
             >
               <GiftIcon className="size-5" />
               Ver ideias de presentes
             </a>
             {evento.endereco ? (
               <a
-                href={mapsUrl(evento.endereco)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full px-5 text-base font-semibold text-white/85 underline decoration-white/30 underline-offset-4 hover:text-white"
+                href="#local"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-7 text-base font-semibold text-white backdrop-blur transition-colors hover:border-white/45"
               >
                 <PinIcon className="size-5" />
                 Como chegar

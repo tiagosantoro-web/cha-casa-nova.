@@ -32,6 +32,11 @@ export function mapsUrl(address: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 }
 
+/** Mapa do Google para colocar dentro da página (sem chave de API). */
+export function mapaEmbedUrl(address: string): string {
+  return `https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`;
+}
+
 /** Remove espaços extras e caracteres de controle. */
 export function cleanText(value: string, max: number): string {
   return value
