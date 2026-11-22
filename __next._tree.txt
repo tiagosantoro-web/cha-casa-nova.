@@ -1,6 +1,6 @@
-:HL["/cha-casa-nova./_next/static/chunks/42_nj7eqm96li.css","style"]
+:HL["/cha-casa-nova./_next/static/chunks/11lzytxqu37v9.css","style"]
 :HL["/cha-casa-nova./_next/static/media/0264c3c98799c37c-s.p.0fuf3937kiol3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/cha-casa-nova./_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/cha-casa-nova./casal.jpg","image",{"fetchPriority":"high"}]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"_FKbbUj8LpaxxFN-I6p5d","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"TXFXxm4vgt8VN_cNlxaQ2","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
