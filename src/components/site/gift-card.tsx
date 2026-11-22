@@ -35,18 +35,21 @@ type Props = {
 export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
   // O presente que o próprio visitante reservou continua com o botão para reenviar a confirmação.
   const reserved = gift.escolhido && !chosenByMe;
+  // Escolhido por alguém (inclusive pelo próprio visitante): o cartão inteiro fica cinza.
+  const taken = gift.escolhido || chosenByMe;
   const price = formatPrice(gift.preco);
   const altPrice = formatPrice(gift.outroPreco);
   const checkedAt = formatShortDate(gift.consultadoEm);
 
   return (
     <article
-      className={`group flex h-full flex-col overflow-hidden rounded-[1.75rem] border bg-card shadow-card transition duration-300 ${
-        reserved ? "border-line" : "border-line/60 hover:-translate-y-1 hover:shadow-lift"
-      } ${chosenByMe ? "ring-2 ring-accent" : ""}`}
+      className={`group flex h-full flex-col overflow-hidden rounded-[1.75rem] border shadow-card transition duration-300 ${
+        taken ? "border-line bg-stone-soft shadow-none" : "border-line/60 bg-card hover:-translate-y-1 hover:shadow-lift"
+      }`}
     >
-      <div className="relative aspect-[4/3] overflow-hidden border-b border-line/70 bg-white">
-        <div className={`size-full transition duration-500 ${reserved ? "opacity-40 grayscale" : "group-hover:scale-[1.04]"}`}>
+      <div className={`relative isolate aspect-[4/3] overflow-hidden border-b border-line/70 ${taken ? "bg-stone-soft" : "bg-white"}`}>
+        {/* Multiplicar faz o fundo branco das fotos sumir no cinza do cartão. */}
+        <div className={`size-full transition duration-500 ${taken ? "opacity-50 grayscale mix-blend-multiply" : "group-hover:scale-[1.04]"}`}>
           <GiftImage src={gift.imagem ?? null} alt={gift.nome} category={gift.categoria} />
         </div>
         <span className="absolute left-3 top-3 rounded-full bg-stone-soft/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft">
@@ -58,7 +61,7 @@ export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
         {reserved || chosenByMe ? (
           <span
             className={`absolute inset-x-3 bottom-3 inline-flex items-center justify-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold ${
-              chosenByMe ? "bg-accent text-white" : "bg-ink text-paper"
+              chosenByMe ? "bg-steel-dark text-white" : "bg-ink-soft text-paper"
             }`}
           >
             <CheckIcon className="size-4" />
@@ -67,7 +70,7 @@ export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className={`flex flex-1 flex-col p-5 transition duration-500 ${taken ? "opacity-60 grayscale" : ""}`}>
         <h3 className="font-display text-xl leading-snug font-medium">{gift.nome}</h3>
         {gift.cor ? (
           <p className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-stone-soft px-2.5 py-1 text-xs font-medium text-ink-soft">
@@ -100,7 +103,11 @@ export function GiftCard({ gift, categoryName, chosenByMe, onChoose }: Props) {
               <button
                 type="button"
                 onClick={() => onChoose(gift)}
-                className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-ink px-4 text-[15px] font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-accent active:translate-y-0"
+                className={`inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full px-4 text-[15px] font-semibold transition active:translate-y-0 ${
+                  chosenByMe
+                    ? "border border-steel-dark/40 bg-transparent text-ink-soft hover:bg-white"
+                    : "bg-ink text-paper hover:-translate-y-0.5 hover:bg-accent"
+                }`}
               >
                 <HeartIcon className="size-[18px]" />
                 {chosenByMe ? "Enviar confirmação de novo" : "Escolher este presente"}
